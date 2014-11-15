@@ -1,5 +1,8 @@
 package com.infinity.sparkler.SparkCloudJsonObjects;
 
+import java.time.Instant;
+import java.util.Date;
+
 public class OAuthToken implements IToken{
     public String access_token;
     public String token_type;

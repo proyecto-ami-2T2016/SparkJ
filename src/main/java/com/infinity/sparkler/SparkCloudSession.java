@@ -8,14 +8,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.infinity.sparkler.SparkCloudJsonObjects.AccessToken;
 import com.infinity.sparkler.SparkCloudJsonObjects.OAuthToken;
 import com.mashape.unirest.http.HttpResponse;
-import com.mashape.unirest.http.JsonNode;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.io.IOException;
 import java.util.List;
 
-public class SparkCloudSession implements AutoCloseable{
+public class SparkCloudSession implements AutoCloseable {
 
     public static final String clientName = "sparkler-java-client";
     private static final String defaultBaseUrl = "https://api.spark.io";
@@ -42,11 +41,11 @@ public class SparkCloudSession implements AutoCloseable{
 
     public List<AccessToken> listTokensOnServer() {
         try {
-            HttpResponse<JsonNode> res = Unirest.get(baseUrl + "/v1/access_tokens")
+            HttpResponse<String> res = Unirest.get(baseUrl + "/v1/access_tokens")
                 .header("accept", "application/json")
                 .basicAuth(username, password)
-                .asJson();
-            return objectMapper.readValue(res.getBody().toString(), new TypeReference<List<AccessToken>>() {});
+                .asString();
+            return objectMapper.readValue(res.getBody(), new TypeReference<List<AccessToken>>() {});
         } catch (UnirestException | JsonMappingException | JsonParseException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -57,7 +56,7 @@ public class SparkCloudSession implements AutoCloseable{
 
     public OAuthToken createNewToken() {
         try {
-            HttpResponse<JsonNode> res = Unirest.post(baseUrl + "/oauth/token")
+            HttpResponse<String> res = Unirest.post(baseUrl + "/oauth/getToken")
                 .header("accept", "application/json")
                 .header("content-type", "application/x-www-form-urlencoded")
                 .field("grant_type", "password")
@@ -65,23 +64,23 @@ public class SparkCloudSession implements AutoCloseable{
                 .field("password", password)
                 .field("client_id", clientName)
                 .field("client_secret", clientName)
-                .asJson();
-            return objectMapper.readValue(res.getBody().toString(), new TypeReference<OAuthToken>() {});
+                .asString();
+            return objectMapper.readValue(res.getBody(), new TypeReference<OAuthToken>() {});
         } catch (UnirestException | JsonMappingException | JsonParseException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return new OAuthToken();
+        return null;
     }
 
     public boolean deleteToken(AccessToken token) {
         try {
-            HttpResponse<JsonNode> res = Unirest.delete(baseUrl + "/v1/access_tokens/" + token.token)
+            HttpResponse<String> res = Unirest.delete(baseUrl + "/v1/access_tokens/" + token.token)
                     .header("accept", "application/json")
                     .basicAuth(username, password)
-                    .asJson();
-            return true;
+                    .asString();
+            return res.getBody().contains("true");
         } catch (UnirestException e) {
             e.printStackTrace();
         }
