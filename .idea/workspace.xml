@@ -112,12 +112,15 @@
       <file leaf-file-name="SessionAuthenticationTests.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/com/infinity/sparkler/SessionAuthenticationTests.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.6548463" vertical-offset="1032" max-vertical-offset="3111">
-              <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+            <state vertical-scroll-proportion="0.21749409" vertical-offset="707" max-vertical-offset="1428">
+              <caret line="67" column="63" selection-start-line="67" selection-start-column="63" selection-end-line="67" selection-end-column="63" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1556#1557#0" expanded="true" />
-                <element signature="e#1583#1584#0" expanded="true" />
+                <element signature="e#1461#1462#0" expanded="true" />
+                <element signature="e#1488#1489#0" expanded="true" />
+                <element signature="n#!!doc;n#RespondWithTokenList#0;n#SessionAuthenticationTests#0" expanded="false" />
+                <element signature="n#!!doc;n#ExpectTokenListRequest#0;n#SessionAuthenticationTests#0" expanded="false" />
+                <element signature="n#!!doc;n#oAuthToken#0;n#SessionAuthenticationTests#0" expanded="false" />
+                <marker date="1416039242837" expanded="true" signature="2872:3836" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -136,11 +139,11 @@
       <file leaf-file-name="SparkCloudSession.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/infinity/sparkler/SparkCloudSession.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1394">
-              <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="971" max-vertical-offset="1615">
+              <caret line="84" column="38" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="38" />
               <folding>
-                <element signature="e#2970#2971#0" expanded="true" />
-                <element signature="e#3004#3005#0" expanded="true" />
+                <element signature="e#3414#3415#0" expanded="true" />
+                <element signature="e#3448#3449#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -174,9 +177,9 @@
         <option value="$PROJECT_DIR$/src/main/java/com/infinity/sparkler/SparkCloudJsonObjects/AccessToken.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/infinity/sparkler/SparkCloudJsonObjects/OAuthToken.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/infinity/sparkler/SparkCloudSim/SparkCloudSim.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/infinity/sparkler/SparkCloudSession.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/infinity/sparkler/Messages/ExpectedField.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/infinity/sparkler/Messages/ExpectedRequest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/infinity/sparkler/SparkCloudSession.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/infinity/sparkler/SessionAuthenticationTests.java" />
       </list>
     </option>
@@ -407,7 +410,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="options.searchVisible" value="true" />
   </component>
-  <component name="RunManager" selected="JUnit.SessionAuthenticationTests.getsNewTokenFromServer">
+  <component name="RunManager" selected="JUnit.SessionAuthenticationTests.deletesToken">
     <configuration default="false" name="SessionAuthenticationTests.getsListOfTokensFromServer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Sparkler" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -464,28 +467,6 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="SessionAuthenticationTests.response401WhenGettingTokenListThrowsWrongUsernamePassword" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="Sparkler" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="PACKAGE_NAME" value="com.infinity.sparkler" />
-      <option name="MAIN_CLASS_NAME" value="com.infinity.sparkler.SessionAuthenticationTests" />
-      <option name="METHOD_NAME" value="response401WhenGettingTokenListThrowsWrongUsernamePassword" />
-      <option name="TEST_OBJECT" value="method" />
-      <option name="VM_PARAMETERS" value="-ea" />
-      <option name="PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <option name="TEST_SEARCH_SCOPE">
-        <value defaultName="moduleWithDependencies" />
-      </option>
-      <envs />
-      <patterns />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
     <configuration default="false" name="SessionAuthenticationTests.asdf2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Sparkler" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -508,13 +489,13 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
-    <configuration default="false" name="SessionAuthenticationTests.getsNewTokenFromServer" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration default="false" name="SessionAuthenticationTests.createsNewToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="Sparkler" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="PACKAGE_NAME" value="com.infinity.sparkler" />
       <option name="MAIN_CLASS_NAME" value="com.infinity.sparkler.SessionAuthenticationTests" />
-      <option name="METHOD_NAME" value="getsNewTokenFromServer" />
+      <option name="METHOD_NAME" value="createsNewToken" />
       <option name="TEST_OBJECT" value="method" />
       <option name="VM_PARAMETERS" value="-ea" />
       <option name="PARAMETERS" />
@@ -533,6 +514,28 @@
       </RunnerSettings>
       <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Debug" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="SessionAuthenticationTests.deletesToken" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Sparkler" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.infinity.sparkler" />
+      <option name="MAIN_CLASS_NAME" value="com.infinity.sparkler.SessionAuthenticationTests" />
+      <option name="METHOD_NAME" value="deletesToken" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+      <RunnerSettings RunnerId="Run" />
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
@@ -707,17 +710,17 @@
     <list size="5">
       <item index="0" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.getsListOfTokensFromServer" />
       <item index="1" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.asdf" />
-      <item index="2" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.response401WhenGettingTokenListThrowsWrongUsernamePassword" />
-      <item index="3" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.asdf2" />
-      <item index="4" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.getsNewTokenFromServer" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.asdf2" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.createsNewToken" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.deletesToken" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.getsNewTokenFromServer" />
-        <item index="1" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.asdf2" />
-        <item index="2" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.asdf" />
-        <item index="3" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.getsListOfTokensFromServer" />
-        <item index="4" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.response401WhenGettingTokenListThrowsWrongUsernamePassword" />
+        <item index="0" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.deletesToken" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.createsNewToken" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.asdf2" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.asdf" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.SessionAuthenticationTests.getsListOfTokensFromServer" />
       </list>
     </recent_temporary>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
@@ -746,7 +749,7 @@
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32911393" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864866" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.43891892" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="true" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.43891892" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -837,9 +840,12 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="748">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1556#1557#0" expanded="true" />
-            <element signature="e#1583#1584#0" expanded="true" />
+            <element signature="e#1461#1462#0" expanded="true" />
+            <element signature="e#1488#1489#0" expanded="true" />
+            <element signature="n#!!doc;n#RespondWithTokenList#0;n#SessionAuthenticationTests#0" expanded="false" />
+            <element signature="n#!!doc;n#ExpectTokenListRequest#0;n#SessionAuthenticationTests#0" expanded="false" />
+            <element signature="n#!!doc;n#oAuthToken#0;n#SessionAuthenticationTests#0" expanded="false" />
+            <marker date="1416039242837" expanded="true" signature="2872:3836" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -849,8 +855,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="952" max-vertical-offset="1802">
           <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
           <folding>
-            <element signature="e#2970#2971#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
+            <element signature="e#3414#3415#0" expanded="true" />
+            <element signature="e#3448#3449#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -908,9 +914,12 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="748">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1556#1557#0" expanded="true" />
-            <element signature="e#1583#1584#0" expanded="true" />
+            <element signature="e#1461#1462#0" expanded="true" />
+            <element signature="e#1488#1489#0" expanded="true" />
+            <element signature="n#!!doc;n#RespondWithTokenList#0;n#SessionAuthenticationTests#0" expanded="false" />
+            <element signature="n#!!doc;n#ExpectTokenListRequest#0;n#SessionAuthenticationTests#0" expanded="false" />
+            <element signature="n#!!doc;n#oAuthToken#0;n#SessionAuthenticationTests#0" expanded="false" />
+            <marker date="1416039242837" expanded="true" signature="2872:3836" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -920,8 +929,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="952" max-vertical-offset="1802">
           <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
           <folding>
-            <element signature="e#2970#2971#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
+            <element signature="e#3414#3415#0" expanded="true" />
+            <element signature="e#3448#3449#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -979,8 +988,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="952" max-vertical-offset="1802">
           <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
           <folding>
-            <element signature="e#2970#2971#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
+            <element signature="e#3414#3415#0" expanded="true" />
+            <element signature="e#3448#3449#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1038,8 +1047,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="444" max-vertical-offset="1428">
           <caret line="51" column="42" selection-start-line="51" selection-start-column="42" selection-end-line="51" selection-end-column="42" />
           <folding>
-            <element signature="e#2970#2971#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
+            <element signature="e#3414#3415#0" expanded="true" />
+            <element signature="e#3448#3449#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1081,8 +1090,8 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="782" max-vertical-offset="1258">
           <caret line="46" column="34" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="34" />
           <folding>
-            <element signature="e#2970#2971#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
+            <element signature="e#3414#3415#0" expanded="true" />
+            <element signature="e#3448#3449#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1203,17 +1212,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/infinity/sparkler/SparkCloudSession.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1394">
-          <caret line="23" column="28" selection-start-line="23" selection-start-column="28" selection-end-line="23" selection-end-column="28" />
-          <folding>
-            <element signature="e#2970#2971#0" expanded="true" />
-            <element signature="e#3004#3005#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/infinity/sparkler/Messages/ExpectedField.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="289">
@@ -1234,14 +1232,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/infinity/sparkler/SparkCloudSession.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="971" max-vertical-offset="1615">
+          <caret line="84" column="38" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="38" />
+          <folding>
+            <element signature="e#3414#3415#0" expanded="true" />
+            <element signature="e#3448#3449#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/infinity/sparkler/SessionAuthenticationTests.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6548463" vertical-offset="1032" max-vertical-offset="3111">
-          <caret line="77" column="5" selection-start-line="77" selection-start-column="5" selection-end-line="77" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.21749409" vertical-offset="707" max-vertical-offset="1428">
+          <caret line="67" column="63" selection-start-line="67" selection-start-column="63" selection-end-line="67" selection-end-column="63" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1556#1557#0" expanded="true" />
-            <element signature="e#1583#1584#0" expanded="true" />
+            <element signature="e#1461#1462#0" expanded="true" />
+            <element signature="e#1488#1489#0" expanded="true" />
+            <element signature="n#!!doc;n#RespondWithTokenList#0;n#SessionAuthenticationTests#0" expanded="false" />
+            <element signature="n#!!doc;n#ExpectTokenListRequest#0;n#SessionAuthenticationTests#0" expanded="false" />
+            <element signature="n#!!doc;n#oAuthToken#0;n#SessionAuthenticationTests#0" expanded="false" />
+            <marker date="1416039242837" expanded="true" signature="2872:3836" placeholder="..." />
           </folding>
         </state>
       </provider>

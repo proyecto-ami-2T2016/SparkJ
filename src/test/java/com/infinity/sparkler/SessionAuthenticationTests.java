@@ -2,8 +2,6 @@ package com.infinity.sparkler;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -63,11 +61,19 @@ public class SessionAuthenticationTests {
     }
 
     @Test
-    public void getsNewTokenFromServer() {
+    public void createsNewToken() {
         ExpectNewTokenRequest();
         RespondWithToken(oAuthToken());
 
         assertThat(session.createNewToken(), is(oAuthToken()));
+    }
+
+    @Test
+    public void deletesToken() {
+        ExpectDeleteTokenRequest(sparklerToken());
+        RespondWithJson("{ \"ok\": true }");
+
+        assertThat(session.deleteToken(sparklerToken()), is(true));
     }
 
     @Test
@@ -84,12 +90,7 @@ public class SessionAuthenticationTests {
         t.forEach(System.out::println);
     }
 
-    private void RespondWithStatusCode(int statusCode) {
-        TestResponse response = new TestResponse();
-        response.changeResponse((res) -> res.status(statusCode));
-        sim.sendResponse(response);
-    }
-
+    //region Responses
     private void RespondWithTokenList(List<IToken> tokens) {
         TestResponse res = new TestResponse();
         try {
@@ -110,6 +111,20 @@ public class SessionAuthenticationTests {
         sim.sendResponse(res);
     }
 
+    private void RespondWithStatusCode(int statusCode) {
+        TestResponse response = new TestResponse();
+        response.changeResponse((res) -> res.status(statusCode));
+        sim.sendResponse(response);
+    }
+
+    private void RespondWithJson(String json) {
+        TestResponse res = new TestResponse();
+        res.body = json;
+        sim.sendResponse(res);
+    }
+    //endregion
+
+    //region Expectations
     private void ExpectTokenListRequest() {
         ExpectedRequest req = new ExpectedRequest();
         req.type = "get";
@@ -131,6 +146,16 @@ public class SessionAuthenticationTests {
         sim.expectRequest(req);
     }
 
+    private void ExpectDeleteTokenRequest(AccessToken token) {
+        ExpectedRequest req = new ExpectedRequest();
+        req.type = "delete";
+        req.path = "/v1/access_tokens/" + token.token;
+        req.basicAuthentication = authentication;
+        sim.expectRequest(req);
+    }
+    //endregion
+
+    //region Tokens
     private OAuthToken oAuthToken() {
         OAuthToken token = new OAuthToken();
         token.access_token = "12345";
@@ -170,8 +195,5 @@ public class SessionAuthenticationTests {
         at.expires_at = Date.from(Instant.now().minusSeconds(3600));
         return at;
     }
-    @Test
-    @Ignore
-    public void thisIsIgnored() {
-    }
+    //endregion
 }

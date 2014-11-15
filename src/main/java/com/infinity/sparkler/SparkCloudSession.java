@@ -75,6 +75,19 @@ public class SparkCloudSession implements AutoCloseable{
         return new OAuthToken();
     }
 
+    public boolean deleteToken(AccessToken token) {
+        try {
+            HttpResponse<JsonNode> res = Unirest.delete(baseUrl + "/v1/access_tokens/" + token.token)
+                    .header("accept", "application/json")
+                    .basicAuth(username, password)
+                    .asJson();
+            return true;
+        } catch (UnirestException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     @Override
     public void close() throws Exception {
         Unirest.shutdown();
