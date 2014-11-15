@@ -1,137 +1,85 @@
 package com.infinity.sparkler;
 
+
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.infinity.sparkler.SparkCloudJsonObjects.AccessToken;
-import sun.misc.BASE64Encoder;
+import com.infinity.sparkler.SparkCloudJsonObjects.OAuthToken;
+import com.mashape.unirest.http.HttpResponse;
+import com.mashape.unirest.http.JsonNode;
+import com.mashape.unirest.http.Unirest;
+import com.mashape.unirest.http.exceptions.UnirestException;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
 
-public class SparkCloudSession {
+public class SparkCloudSession implements AutoCloseable{
 
-    //private static final String clientName = "SparklerSession";
-    private static final String clientName = "sparkler-java-client";
+    public static final String clientName = "sparkler-java-client";
     private static final String defaultBaseUrl = "https://api.spark.io";
 
     private String baseUrl;
     private String username;
     private String password;
     private AccessToken accessToken;
+    private ObjectMapper objectMapper;
 
     public SparkCloudSession(String username, String password) {
         this.username = username;
         this.password = password;
         baseUrl = defaultBaseUrl;
+        objectMapper = new ObjectMapper();
     }
 
     public SparkCloudSession(String username, String password, String baseUrl) {
         this.username = username;
         this.password = password;
         this.baseUrl = baseUrl;
+        objectMapper = new ObjectMapper();
     }
 
-    private void connect() {
-        LoadAccessToken();
-    }
-
-    private void LoadAccessToken() {
-        if(!LoadExistingAccessToken() && !LoadNewAccessToken()) {
-            throw new FailedToGetAccessToken();
-        }
-    }
-
-    private boolean LoadExistingAccessToken() {
-        for(AccessToken at : ListTokensOnServer())
-            if(at.client.equals(clientName))
-            {
-                accessToken = at;
-                return true;
-            }
-        return false;
-    }
-
-    private boolean LoadNewAccessToken() {
-        return false;
-    }
-
-    public List<AccessToken> ListTokensOnServer() {
-        HttpURLConnection conn = httpGetConn("GET", "/v1/access_tokens");
-        AddAuthToHttp(conn);
-        List<AccessToken> list = (List<AccessToken>) ResponseAsObject(conn, new TypeReference<List<AccessToken>>() {});
-        conn.disconnect();
-        return list;
-    }
-
-    public AccessToken getNewTokenFromServer() {
-        HttpURLConnection conn = httpGetConn("POST", "/oauth/token");
-        conn.
-
-        AccessToken token = (AccessToken) ResponseAsObject(conn, new TypeReference<AccessToken>() {});
-        conn.disconnect();
-        return token;
-    }
-
-    private HttpURLConnection httpGetConn(String type, String url) {
+    public List<AccessToken> listTokensOnServer() {
         try {
-            URL javaUrl = new URL(baseUrl + url);
-            HttpURLConnection conn = (HttpURLConnection) javaUrl.openConnection();
-            conn.setRequestMethod(type);
-            if(type.equals("GET")) {
-                conn.setRequestProperty("Accept", "application/json");
-            } else if(type.equals("POST")) {
-                conn.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
-            }
-            return conn;
+            HttpResponse<JsonNode> res = Unirest.get(baseUrl + "/v1/access_tokens")
+                .header("accept", "application/json")
+                .basicAuth(username, password)
+                .asJson();
+            return objectMapper.readValue(res.getBody().toString(), new TypeReference<List<AccessToken>>() {});
+        } catch (UnirestException | JsonMappingException | JsonParseException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-            throw new UnknownConnectionIssue();
         }
+        return null;
     }
 
-    private Object ResponseAsObject(HttpURLConnection conn, TypeReference typeReference)  {
+    public OAuthToken createNewToken() {
         try {
-            String json = ResponseAsString(conn);
-            ObjectMapper om = new ObjectMapper();
-            return om.readValue(json, typeReference);
+            HttpResponse<JsonNode> res = Unirest.post(baseUrl + "/oauth/token")
+                .header("accept", "application/json")
+                .header("content-type", "application/x-www-form-urlencoded")
+                .field("grant_type", "password")
+                .field("username", username)
+                .field("password", password)
+                .field("client_id", clientName)
+                .field("client_secret", clientName)
+                .asJson();
+            return objectMapper.readValue(res.getBody().toString(), new TypeReference<OAuthToken>() {});
+        } catch (UnirestException | JsonMappingException | JsonParseException e) {
+            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-            throw new FailedToParseHttpResponse();
         }
+        return new OAuthToken();
     }
 
-    private String ResponseAsString(HttpURLConnection conn) {
-        try {
-            switch(conn.getResponseCode()) {
-                case 401:
-                    throw new UsernameOrPasswordIncorrect();
-                case 200:
-                    BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-                    String response = "";
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        response += line + "\n";
-                    }
-                    return response;
-                default:
-                    throw new UnknownConnectionIssue();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            throw new FailedToParseHttpResponse();
-        }
+    @Override
+    public void close() throws Exception {
+        Unirest.shutdown();
     }
 
-    private void AddAuthToHttp(HttpURLConnection conn) {
-        BASE64Encoder enc = new sun.misc.BASE64Encoder();
-        String usernamePassword = username + ":" + password;
-        String encodedAuthorization = enc.encode(usernamePassword.getBytes());
-        conn.setRequestProperty("Authorization", "Basic " + encodedAuthorization);
-    }
 
     public class FailedToGetAccessToken extends RuntimeException {}
     public class FailedToParseHttpResponse extends RuntimeException {}

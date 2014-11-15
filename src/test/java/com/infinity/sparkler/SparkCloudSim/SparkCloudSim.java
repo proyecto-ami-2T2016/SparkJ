@@ -10,13 +10,13 @@ import java.util.Queue;
 
 import static spark.Spark.*;
 
-public class SparkCloudSim {
+public class SparkCloudSim implements AutoCloseable{
     private Queue<ExpectedRequest> expectedRequests;
     private Queue<TestResponse> responses;
 
     public SparkCloudSim() {
-        expectedRequests = new LinkedList<ExpectedRequest>();
-        responses = new LinkedList<TestResponse>();
+        expectedRequests = new LinkedList<>();
+        responses = new LinkedList<>();
     }
 
     public void startSpark() {
@@ -25,21 +25,21 @@ public class SparkCloudSim {
         delete("/*", (req, res) -> handleRequest(req, res, "delete"));
     }
 
-    public void stopSpark() {
-        stop();
-    }
-
     private String handleRequest(Request req, Response res, String requestType) {
         expectedRequests.remove().AssertMatch(req, requestType);
         return responses.remove().apply(res);
     }
 
-    public void ExpectRequest(ExpectedRequest expectedRequest) {
+    public void expectRequest(ExpectedRequest expectedRequest) {
         expectedRequests.add(expectedRequest);
     }
 
-    public void SendResponse(TestResponse response) {
+    public void sendResponse(TestResponse response) {
         responses.add(response);
     }
 
+    @Override
+    public void close() throws Exception {
+        stop();
+    }
 }

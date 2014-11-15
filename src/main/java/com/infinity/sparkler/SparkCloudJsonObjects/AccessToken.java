@@ -2,7 +2,7 @@ package com.infinity.sparkler.SparkCloudJsonObjects;
 
 import java.util.Date;
 
-public class AccessToken {
+public class AccessToken implements IToken{
     public String token;
     public Date expires_at;
     public String client;

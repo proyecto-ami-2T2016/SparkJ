@@ -7,19 +7,25 @@ import static org.junit.Assert.assertEquals;
 
 import spark.Request;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Set;
+
 public class ExpectedRequest {
     public String type;
     public String path;
-    public String getAuthentication;
-    public String postAuthentication;
-    public String token;
+    public String basicAuthentication;
+    public List<ExpectedField> expectedFields;
 
     public ExpectedRequest() {
         type = null;
         path = null;
-        getAuthentication = null;
-        postAuthentication = null;
-        token = null;
+        basicAuthentication = null;
+        expectedFields = new LinkedList<>();
+    }
+
+    public void add(ExpectedField ef) {
+        expectedFields.add(ef);
     }
 
     public void AssertMatch(Request req, String requestType) {
@@ -27,9 +33,13 @@ public class ExpectedRequest {
             assertThat(requestType, is(type));
         if(path != null)
             assertThat(req.pathInfo(), is(path));
-        if(getAuthentication != null) {
+        if(basicAuthentication != null) {
             assertThat(req.headers(), hasItem("Authorization"));
-            assertThat(req.headers("Authorization"), is(getAuthentication));
+            assertThat(req.headers("Authorization"), is(basicAuthentication));
+        }
+        for (ExpectedField ef : expectedFields) {
+            assertThat(req.queryParams(), hasItem(ef.key));
+            assertThat(req.queryParams(ef.key), is(ef.value));
         }
     }
 }
