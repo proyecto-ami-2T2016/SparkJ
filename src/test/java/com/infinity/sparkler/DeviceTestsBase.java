@@ -4,14 +4,14 @@ import org.junit.Before;
 
 import java.util.Arrays;
 
-public abstract class DeviceControllerTestsBase extends SessionTestsBase {
+public abstract class DeviceTestsBase extends SessionTestsBase {
     protected static final String deviceId = "1234567890";
-    protected ISparkController controller;
+    protected ISparkDevice device;
 
     @Before
     public void before() {
         connectSession();
-        controller = new SparkController(session);
+        device = new SparkDevice(deviceId, session);
     }
 
     private void connectSession() {

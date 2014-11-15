@@ -7,15 +7,12 @@ import com.infinity.sparkler.Messages.ExpectedRequest;
 import com.infinity.sparkler.Messages.TestResponse;
 import com.infinity.sparkler.SparkCloudJsonObjects.AccessToken;
 import com.infinity.sparkler.SparkCloudJsonObjects.FunctionResult;
-import org.junit.Before;
 import org.junit.Test;
-
-import java.util.Arrays;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class DeviceFunctionsTests extends DeviceControllerTestsBase {
+public class DeviceFunctionsTests extends DeviceTestsBase {
 
     @Test
     public void callsFunctionSuccessfully() throws JsonProcessingException {
@@ -29,7 +26,7 @@ public class DeviceFunctionsTests extends DeviceControllerTestsBase {
         result.return_value = 5;
         respondWithFunctionResult(result);
 
-        assertThat(controller.callFunction(deviceId, funcName, args), is(true));
+        assertThat(device.callFunction(funcName, args), is(true));
     }
 
     private void expectFunctionCall(String deviceId, String functionName, String args, AccessToken token) {

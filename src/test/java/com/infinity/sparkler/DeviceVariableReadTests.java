@@ -1,7 +1,6 @@
 package com.infinity.sparkler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.infinity.sparkler.Messages.ExpectedField;
 import com.infinity.sparkler.Messages.ExpectedRequest;
 import com.infinity.sparkler.Messages.TestResponse;
 import com.infinity.sparkler.SparkCloudJsonObjects.AccessToken;
@@ -11,7 +10,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class DeviceVariableReadTests extends DeviceControllerTestsBase{
+public class DeviceVariableReadTests extends DeviceTestsBase {
 
     @Test
     public void readsVariableSuccessfully() throws JsonProcessingException {
@@ -24,7 +23,7 @@ public class DeviceVariableReadTests extends DeviceControllerTestsBase{
         result.result = returnValue;
         respondWithVariableReadResult(result);
 
-        assertThat(controller.readVariable(deviceId, varName), is(returnValue));
+        assertThat(device.readVariable( varName), is(returnValue));
     }
 
     private void expectVariableRead(String deviceId, String variableName, AccessToken token) {
