@@ -8,9 +8,6 @@ public class SparkController implements ISparkController {
         this.session = session;
     }
 
-    public SparkController(String username, String password) {
-        session = new SparkCloudSession(username, password);
-    }
 
     @Override
     public ISparkDevice getDevices() {

@@ -1,6 +1,5 @@
 package com.infinity.sparkler;
 
-
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -92,9 +91,6 @@ public class SparkCloudSession implements AutoCloseable {
         Unirest.shutdown();
     }
 
-
-    public class FailedToGetAccessToken extends RuntimeException {}
-    public class FailedToParseHttpResponse extends RuntimeException {}
     public class UsernameOrPasswordIncorrect extends RuntimeException {}
-    public class UnknownConnectionIssue extends RuntimeException {}
+
 }
