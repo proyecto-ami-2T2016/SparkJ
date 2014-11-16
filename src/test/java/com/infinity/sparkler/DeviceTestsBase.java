@@ -9,7 +9,7 @@ public abstract class DeviceTestsBase extends SessionTestsBase {
     protected ISparkDevice device;
 
     @Before
-    public void before() {
+    public void SetupDevice() {
         connectSession();
         device = new SparkDevice(deviceId, session);
     }
@@ -17,6 +17,6 @@ public abstract class DeviceTestsBase extends SessionTestsBase {
     private void connectSession() {
         expectTokenListRequest();
         respondWithTokenList(Arrays.asList(sparklerToken()));
-        //session.connect();
+        session.connect();
     }
 }

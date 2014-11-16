@@ -29,7 +29,8 @@ public class DeviceVariableReadTests extends DeviceTestsBase {
     private void expectVariableRead(String deviceId, String variableName, AccessToken token) {
         ExpectedRequest req = new ExpectedRequest();
         req.type = "get";
-        req.path = "/v1/devices/" + deviceId + "/" + variableName + "?access_token=" + token.token;
+        req.path = "/v1/devices/" + deviceId + "/" + variableName;
+        req.set(token);
         sim.expectRequest(req);
     }
 
