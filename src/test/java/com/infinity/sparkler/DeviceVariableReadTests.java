@@ -15,7 +15,7 @@ public class DeviceVariableReadTests extends DeviceTestsBase {
     @Test
     public void readsVariableSuccessfully() throws JsonProcessingException {
         String varName = "var1";
-        int returnValue = 10;
+        String returnValue = "10";
         expectVariableRead(deviceId, varName, sparklerToken());
         VariableReadResult result = new VariableReadResult();
         result.cmd = "VarReturn";

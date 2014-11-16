@@ -17,16 +17,17 @@ public class DeviceFunctionsTests extends DeviceTestsBase {
     @Test
     public void callsFunctionSuccessfully() throws JsonProcessingException {
         String funcName = "function1";
-        String args = "";
+        String args = "args1";
+        int returnValue = 5;
         expectFunctionCall(deviceId, funcName, args, sparklerToken());
         FunctionResult result = new FunctionResult();
         result.id = deviceId;
         result.name = "program1";
         result.connected = true;
-        result.return_value = 5;
+        result.return_value = returnValue;
         respondWithFunctionResult(result);
 
-        assertThat(device.callFunction(funcName, args), is(true));
+        assertThat(device.callFunction(funcName, args), is(returnValue));
     }
 
     private void expectFunctionCall(String deviceId, String functionName, String args, AccessToken token) {
@@ -34,7 +35,7 @@ public class DeviceFunctionsTests extends DeviceTestsBase {
         req.type = "post";
         req.path = "/v1/devices/" + deviceId + "/" + functionName;
         req.set(token);
-        req.add(new ExpectedField("", "args=" + args));
+        req.add(new ExpectedField("args", args));
         sim.expectRequest(req);
     }
 

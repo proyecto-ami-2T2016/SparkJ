@@ -25,12 +25,11 @@ public abstract class SessionTestsBase {
     protected ObjectMapper om;
 
     @Before
-    public void before() throws InterruptedException {
+    public void before() {
         sim  = new SparkCloudSim();
         sim.startSpark();
         session = new SparkCloudSession(username, password, "http://localhost:4567");
         om = new ObjectMapper();
-        Thread.sleep(500);
     }
 
     @After
