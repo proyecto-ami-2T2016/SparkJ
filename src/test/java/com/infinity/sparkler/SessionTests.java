@@ -21,7 +21,7 @@ public class SessionTests extends SessionTestsBase {
         assertThat(session.listTokensOnServer(), is(tokenList));
     }
 
-    @Test(expected = SparkCloudSession.UsernameOrPasswordIncorrectException.class)
+    @Test(expected = SparkRestApi.UsernameOrPasswordIncorrectException.class)
     public void status401WhenGettingTokenListThrowsWrongUsernamePassword() {
         expectTokenListRequest();
         respondWithStatusCode(401);
@@ -29,7 +29,7 @@ public class SessionTests extends SessionTestsBase {
         assertThat(session.listTokensOnServer(), is(nullValue()));
     }
 
-    @Test(expected = SparkCloudSession.NetworkConnectionErrorException.class)
+    @Test(expected = SparkRestApi.NetworkConnectionErrorException.class)
     public void status500WhenGettingTokenListThrowsNetworkConnectionError() {
         expectTokenListRequest();
         respondWithStatusCode(500);
