@@ -1,9 +1,28 @@
 package com.infinity.sparkler.SparkCloudJsonObjects;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.infinity.sparkler.SparkCloudSession;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class OAuthToken implements IToken{
     public String access_token;
     public String token_type;
     public long expires_in;
+
+    @Override
+    public String getKey() {
+        return access_token;
+    }
+
+    @Override
+    public boolean isExpired() {
+        return false;
+    }
+
+    @Override
+    public String getClientName() {
+        return SparkCloudSession.clientName;
+    }
 
     @Override
     public String toString() {

@@ -29,7 +29,9 @@ public class SparkDevice implements ISparkDevice {
         deviceId = id;
         this.session = session;
         objectMapper = new ObjectMapper();
-        session.connect();
+        if(!session.connected()) {
+            session.connect();
+        }
     }
 
     @Override

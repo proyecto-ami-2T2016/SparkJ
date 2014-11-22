@@ -5,13 +5,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.infinity.sparkler.SparkCloudJsonObjects.AccessToken;
+import com.infinity.sparkler.SparkCloudJsonObjects.IToken;
 import com.infinity.sparkler.SparkCloudJsonObjects.OAuthToken;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 public class SparkCloudSession implements AutoCloseable {
@@ -20,7 +20,7 @@ public class SparkCloudSession implements AutoCloseable {
     private static final String defaultBaseUrl = "https://api.spark.io";
 
     protected String baseUrl;
-    private AccessToken accessToken;
+    private IToken token;
     private String username;
     private String password;
     private ObjectMapper objectMapper;
@@ -40,24 +40,24 @@ public class SparkCloudSession implements AutoCloseable {
     }
 
     public boolean connect() {
-        accessToken = getTokenFromServer(0);
-        return accessToken != null;
+        token = getTokenFromServer(0);
+        return token != null;
     }
 
-    private AccessToken getTokenFromServer(int attempt) {
-        List<AccessToken> tokens = listTokensOnServer();
-        tokens.removeIf(t -> !t.client.equals(clientName));
-        tokens.removeIf(t -> t.expires_at.before(new Date()));
+    private IToken getTokenFromServer(int attempt) {
+        List<IToken> tokens = listTokensOnServer();
+        tokens.removeIf(t -> !t.getClientName().equals(clientName));
+        tokens.removeIf(t -> t.isExpired());
         if(!tokens.isEmpty()) {
             return tokens.get(0);
         } else if(attempt > 0) {
             createNewToken();
-            return getTokenFromServer(attempt+1);
+            return getTokenFromServer(attempt + 1);
         }
         return null;
     }
 
-    protected List<AccessToken> listTokensOnServer() {
+    protected List<IToken> listTokensOnServer() {
         try {
             HttpResponse<String> res = Unirest.get(baseUrl + "/v1/access_tokens")
                 .header("accept", "application/json")
@@ -72,7 +72,7 @@ public class SparkCloudSession implements AutoCloseable {
         return null;
     }
 
-    protected OAuthToken createNewToken() {
+    protected IToken createNewToken() {
         try {
             HttpResponse<String> res = Unirest.post(baseUrl + "/oauth/token")
                 .header("accept", "application/json")
@@ -92,9 +92,9 @@ public class SparkCloudSession implements AutoCloseable {
         return null;
     }
 
-    protected boolean deleteToken(AccessToken token) {
+    protected boolean deleteToken(IToken token) {
         try {
-            HttpResponse<String> res = Unirest.delete(baseUrl + "/v1/access_tokens/" + token.token)
+            HttpResponse<String> res = Unirest.delete(baseUrl + "/v1/access_tokens/" + token.getKey())
                     .header("accept", "application/json")
                     .basicAuth(username, password)
                     .asString();
@@ -103,28 +103,19 @@ public class SparkCloudSession implements AutoCloseable {
             e.printStackTrace();
         }
         return false;
-    }
-
-    protected boolean deleteToken(OAuthToken token) {
-        try {
-            HttpResponse<String> res = Unirest.delete(baseUrl + "/v1/access_tokens/" + token.access_token)
-                    .header("accept", "application/json")
-                    .basicAuth(username, password)
-                    .asString();
-            return res.getBody().contains("true");
-        } catch (UnirestException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    protected String getTokenKey() {
-        return accessToken.token;
     }
 
     @Override
     public void close() throws Exception {
         Unirest.shutdown();
+    }
+
+    public String getTokenKey() {
+        return token.getKey();
+    }
+
+    public boolean connected() {
+        return token != null && !token.isExpired();
     }
 
     public class UsernameOrPasswordIncorrect extends RuntimeException {}

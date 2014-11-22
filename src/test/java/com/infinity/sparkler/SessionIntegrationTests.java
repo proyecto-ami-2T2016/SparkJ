@@ -1,7 +1,6 @@
 package com.infinity.sparkler;
 
-import com.infinity.sparkler.SparkCloudJsonObjects.AccessToken;
-import com.infinity.sparkler.SparkCloudJsonObjects.OAuthToken;
+import com.infinity.sparkler.SparkCloudJsonObjects.IToken;
 import com.infinity.sparkler.Tools.SparkCredentials;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,21 +29,21 @@ public class SessionIntegrationTests {
 
     @Test(timeout=5000)
     public void createAndDeleteToken() {
-        OAuthToken newToken = session.createNewToken();
-        assertThat(hasToken(listTokens(), newToken.access_token), is(true));
+        IToken newToken = session.createNewToken();
+        assertThat(hasToken(listTokens(), newToken.getKey()), is(true));
         session.deleteToken(newToken);
-        assertThat(hasToken(listTokens(), newToken.access_token), is(false));
+        assertThat(hasToken(listTokens(), newToken.getKey()), is(false));
     }
 
-    private Collection<AccessToken> listTokens() {
-        Collection<AccessToken> tokens = session.listTokensOnServer();
-        tokens.removeIf(t -> !t.client.equals(SparkCloudSession.clientName));
+    private Collection<IToken> listTokens() {
+        Collection<IToken> tokens = session.listTokensOnServer();
+        tokens.removeIf(t -> !t.getClientName().equals(SparkCloudSession.clientName));
         return tokens;
     }
 
-    private boolean hasToken(Collection<AccessToken> tokens, String id) {
-        for(AccessToken t : tokens) {
-            if(t.token.equals(id))
+    private boolean hasToken(Collection<IToken> tokens, String id) {
+        for(IToken t : tokens) {
+            if(t.getKey().equals(id))
                 return true;
         }
         return false;
