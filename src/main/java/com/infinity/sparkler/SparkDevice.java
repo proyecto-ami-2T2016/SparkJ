@@ -14,18 +14,12 @@ public class SparkDevice implements ISparkDevice {
     private String deviceId;
 
     public SparkDevice(String id, String username, String password) {
-        session = new SparkCloudSession(username, password);
-        deviceId = id;
-        init();
+        this(id, new SparkCloudSession(username, password));
     }
 
     public SparkDevice(String id, SparkCloudSession session) {
         deviceId = id;
         this.session = session;
-        init();
-    }
-
-    private void init() {
         if(!session.connected()) {
             session.connect();
         }

@@ -24,9 +24,7 @@ public class SparkCloudSession implements AutoCloseable {
     private String password;
 
     public SparkCloudSession(String username, String password) {
-        this.username = username;
-        this.password = password;
-        baseUrl = defaultBaseUrl;
+        this(username, password, defaultBaseUrl);
     }
 
     public SparkCloudSession(String username, String password, String baseUrl) {
