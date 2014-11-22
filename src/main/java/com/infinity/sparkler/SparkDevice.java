@@ -22,12 +22,14 @@ public class SparkDevice implements ISparkDevice {
         session = new SparkCloudSession(username, password);
         deviceId = id;
         objectMapper = new ObjectMapper();
+        session.connect();
     }
 
     public SparkDevice(String id, SparkCloudSession session) {
         deviceId = id;
         this.session = session;
         objectMapper = new ObjectMapper();
+        session.connect();
     }
 
     @Override

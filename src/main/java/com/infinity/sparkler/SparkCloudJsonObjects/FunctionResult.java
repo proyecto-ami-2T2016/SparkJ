@@ -1,5 +1,8 @@
 package com.infinity.sparkler.SparkCloudJsonObjects;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class FunctionResult {
     public String id;
     public String name;

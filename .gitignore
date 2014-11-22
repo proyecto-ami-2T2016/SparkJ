@@ -60,3 +60,4 @@ $RECYCLE.BIN/
 *.msp
 
 .idea/workspace.xml
+credentials.txt
