@@ -43,7 +43,7 @@ public class SparkCloudSession implements AutoCloseable {
         objectMapper = new ObjectMapper();
     }
 
-    public boolean connect() {
+    protected boolean connect() {
         token = getTokenFromServer(0);
         return token != null;
     }
@@ -66,7 +66,7 @@ public class SparkCloudSession implements AutoCloseable {
             HttpRequest req = Unirest.get(baseUrl + "/v1/access_tokens")
                 .header("accept", "application/json")
                 .basicAuth(username, password);
-            HttpResponse<String> res = SendRequest(req);
+            HttpResponse<String> res = sendRequest(req);
             return objectMapper.readValue(res.getBody(), new TypeReference<List<AccessToken>>() {});
         } catch (JsonMappingException | JsonParseException e) {
             e.printStackTrace();
@@ -86,7 +86,7 @@ public class SparkCloudSession implements AutoCloseable {
                 .field("password", password)
                 .field("client_id", clientName)
                 .field("client_secret", clientName);
-            HttpResponse<String> res = SendRequest(req);
+            HttpResponse<String> res = sendRequest(req);
             return objectMapper.readValue(res.getBody(), new TypeReference<OAuthToken>() {});
         } catch ( JsonMappingException | JsonParseException e) {
             e.printStackTrace();
@@ -100,11 +100,11 @@ public class SparkCloudSession implements AutoCloseable {
         HttpRequestWithBody req = Unirest.delete(baseUrl + "/v1/access_tokens/" + token.getKey())
                 .header("accept", "application/json")
                 .basicAuth(username, password);
-        HttpResponse<String> res = SendRequest(req);
+        HttpResponse<String> res = sendRequest(req);
         return res.getBody().contains("true");
     }
 
-    private HttpResponse<String> SendRequest(com.mashape.unirest.request.BaseRequest req) {
+    protected HttpResponse<String> sendRequest(com.mashape.unirest.request.BaseRequest req) {
         try {
             HttpResponse<String> res = req.asString();
             switch(res.getCode()) {
@@ -136,11 +136,11 @@ public class SparkCloudSession implements AutoCloseable {
         Unirest.shutdown();
     }
 
-    public String getTokenKey() {
+    protected String getTokenKey() {
         return token.getKey();
     }
 
-    public boolean connected() {
+    protected boolean connected() {
         return token != null && !token.isExpired();
     }
 

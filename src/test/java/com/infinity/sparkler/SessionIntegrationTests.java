@@ -26,7 +26,7 @@ public class SessionIntegrationTests {
         assertThat(tokens.isEmpty(), is(false));
     }
 
-    @Test(timeout=5000)
+    @Test(timeout=3000)
     public void createAndDeleteToken() {
         IToken newToken = session.createNewToken();
         assertThat(hasToken(listTokens(), newToken.getKey()), is(true));
