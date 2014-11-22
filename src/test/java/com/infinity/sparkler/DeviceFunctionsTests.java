@@ -30,6 +30,72 @@ public class DeviceFunctionsTests extends DeviceTestsBase {
         assertThat(device.callFunction(funcName, args), is(returnValue));
     }
 
+    @Test(expected = SparkRestApi.InvalidVariableOrFunctionException.class)
+    public void status400ThrowsInvalidVariableOrFunction() {
+        String args = "args1";
+        String function = "function1";
+
+        expectFunctionCall(deviceId, function, args, sparklerToken());
+        respondWithStatusCode(400);
+
+        device.callFunction(function, args);
+    }
+
+    @Test(expected = SparkRestApi.NotAuthorizedForThisCoreException.class)
+    public void status403ThrowsNotAuthorizedForThisCore() {
+        String args = "args1";
+        String function = "function1";
+
+        expectFunctionCall(deviceId, function, args, sparklerToken());
+        respondWithStatusCode(403);
+
+        device.callFunction(function, args);
+    }
+
+    @Test(expected = SparkRestApi.CoreNotConnectedToCloudException.class)
+    public void status404ThrowsCoreNotConnectedToCloud() {
+        String args = "args1";
+        String function = "function1";
+
+        expectFunctionCall(deviceId, function, args, sparklerToken());
+        respondWithStatusCode(404);
+
+        device.callFunction(function, args);
+    }
+
+    @Test(expected = SparkRestApi.SparkCloudConnectionTimeoutException.class)
+    public void status408ThrowsSparkCloudConnectionTimeout() {
+        String args = "args1";
+        String function = "function1";
+
+        expectFunctionCall(deviceId, function, args, sparklerToken());
+        respondWithStatusCode(408);
+
+        device.callFunction(function, args);
+    }
+
+    @Test(expected = SparkRestApi.SparkCloundNotAvailableException.class)
+    public void status500ThrowsSparkCloudNotAvailable() {
+        String args = "args1";
+        String function = "function1";
+
+        expectFunctionCall(deviceId, function, args, sparklerToken());
+        respondWithStatusCode(500);
+
+        device.callFunction(function, args);
+    }
+
+    @Test(expected = SparkRestApi.UnknownNetworkConnectionErrorException.class)
+    public void unknownStatusThrowsUnknownNetworkConnectionError() {
+        String args = "args1";
+        String function = "function1";
+
+        expectFunctionCall(deviceId, function, args, sparklerToken());
+        respondWithStatusCode(505);
+
+        device.callFunction(function, args);
+    }
+
     private void expectFunctionCall(String deviceId, String functionName, String args, AccessToken token) {
         ExpectedRequest req = new ExpectedRequest();
         req.type = "post";
