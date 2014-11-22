@@ -23,7 +23,7 @@ public class SessionIntegrationTests {
 
     @Test
     public void listTokensOnServer() {
-        List tokens = session.listTokensOnServer();
+        Collection<IToken> tokens = session.listTokensOnServer();
         assertThat(tokens.isEmpty(), is(false));
     }
 

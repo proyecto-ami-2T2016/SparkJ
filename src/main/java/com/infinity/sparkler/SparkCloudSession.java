@@ -12,6 +12,7 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
 import java.io.IOException;
+import java.util.Collection;
 import java.util.List;
 
 public class SparkCloudSession implements AutoCloseable {
@@ -45,11 +46,11 @@ public class SparkCloudSession implements AutoCloseable {
     }
 
     private IToken getTokenFromServer(int attempt) {
-        List<IToken> tokens = listTokensOnServer();
+        Collection<IToken> tokens = listTokensOnServer();
         tokens.removeIf(t -> !t.getClientName().equals(clientName));
-        tokens.removeIf(t -> t.isExpired());
+        tokens.removeIf(IToken::isExpired);
         if(!tokens.isEmpty()) {
-            return tokens.get(0);
+            return tokens.iterator().next();
         } else if(attempt > 0) {
             createNewToken();
             return getTokenFromServer(attempt + 1);
@@ -57,7 +58,7 @@ public class SparkCloudSession implements AutoCloseable {
         return null;
     }
 
-    protected List<IToken> listTokensOnServer() {
+    protected Collection<IToken> listTokensOnServer() {
         try {
             HttpResponse<String> res = Unirest.get(baseUrl + "/v1/access_tokens")
                 .header("accept", "application/json")
