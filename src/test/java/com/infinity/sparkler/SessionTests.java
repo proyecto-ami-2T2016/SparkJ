@@ -10,7 +10,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class SessionAuthenticationTests extends SessionTestsBase {
+public class SessionTests extends SessionTestsBase {
 
     @Test
     public void getsListOfTokensFromServer() {
