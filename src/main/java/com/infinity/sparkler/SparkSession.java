@@ -34,21 +34,19 @@ public class SparkSession implements AutoCloseable {
     }
 
     protected boolean connect() {
-        token = getTokenFromServer(0);
+        token = getTokenFromServer();
         return token != null;
     }
 
-    private IToken getTokenFromServer(int attempt) {
+    private IToken getTokenFromServer() {
         Collection<IToken> tokens = listTokensOnServer();
         tokens.removeIf(t -> !t.getClientName().equals(clientName));
         tokens.removeIf(IToken::isExpired);
         if(!tokens.isEmpty()) {
             return tokens.iterator().next();
-        } else if(attempt > 0) {
-            createNewToken();
-            return getTokenFromServer(attempt + 1);
+        } else {
+            return createNewToken();
         }
-        return null;
     }
 
     protected Collection<IToken> listTokensOnServer() {
