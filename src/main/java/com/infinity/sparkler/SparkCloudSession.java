@@ -10,6 +10,9 @@ import com.infinity.sparkler.SparkCloudJsonObjects.OAuthToken;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
+import com.mashape.unirest.request.HttpRequest;
+import com.mashape.unirest.request.HttpRequestWithBody;
+import com.mashape.unirest.request.body.MultipartBody;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -60,12 +63,12 @@ public class SparkCloudSession implements AutoCloseable {
 
     protected Collection<IToken> listTokensOnServer() {
         try {
-            HttpResponse<String> res = Unirest.get(baseUrl + "/v1/access_tokens")
+            HttpRequest req = Unirest.get(baseUrl + "/v1/access_tokens")
                 .header("accept", "application/json")
-                .basicAuth(username, password)
-                .asString();
+                .basicAuth(username, password);
+            HttpResponse<String> res = SendRequest(req);
             return objectMapper.readValue(res.getBody(), new TypeReference<List<AccessToken>>() {});
-        } catch (UnirestException | JsonMappingException | JsonParseException e) {
+        } catch (JsonMappingException | JsonParseException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -75,17 +78,17 @@ public class SparkCloudSession implements AutoCloseable {
 
     protected IToken createNewToken() {
         try {
-            HttpResponse<String> res = Unirest.post(baseUrl + "/oauth/token")
+            MultipartBody req = Unirest.post(baseUrl + "/oauth/token")
                 .header("accept", "application/json")
                 .header("content-type", "application/x-www-form-urlencoded")
                 .field("grant_type", "password")
                 .field("username", username)
                 .field("password", password)
                 .field("client_id", clientName)
-                .field("client_secret", clientName)
-                .asString();
+                .field("client_secret", clientName);
+            HttpResponse<String> res = SendRequest(req);
             return objectMapper.readValue(res.getBody(), new TypeReference<OAuthToken>() {});
-        } catch (UnirestException | JsonMappingException | JsonParseException e) {
+        } catch ( JsonMappingException | JsonParseException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
@@ -94,16 +97,38 @@ public class SparkCloudSession implements AutoCloseable {
     }
 
     protected boolean deleteToken(IToken token) {
+        HttpRequestWithBody req = Unirest.delete(baseUrl + "/v1/access_tokens/" + token.getKey())
+                .header("accept", "application/json")
+                .basicAuth(username, password);
+        HttpResponse<String> res = SendRequest(req);
+        return res.getBody().contains("true");
+    }
+
+    private HttpResponse<String> SendRequest(com.mashape.unirest.request.BaseRequest req) {
         try {
-            HttpResponse<String> res = Unirest.delete(baseUrl + "/v1/access_tokens/" + token.getKey())
-                    .header("accept", "application/json")
-                    .basicAuth(username, password)
-                    .asString();
-            return res.getBody().contains("true");
+            HttpResponse<String> res = req.asString();
+            switch(res.getCode()) {
+                case 200:
+                    return res;
+                case 400:
+                    throw new InvalidVariableOrFunctionException();
+                case 401:
+                    throw new UsernameOrPasswordIncorrectException();
+                case 403:
+                    throw new NotAuthorizedForThisCoreException();
+                case 404:
+                    throw new CoreNotConnectedToCloudException();
+                case 408:
+                    throw new SparkCloudConnectionTimeoutException();
+                case 500:
+                    throw new NetworkConnectionErrorException();
+                default:
+                    throw new UnknownNetworkConnectionErrorException();
+            }
         } catch (UnirestException e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
     }
 
     @Override
@@ -119,6 +144,12 @@ public class SparkCloudSession implements AutoCloseable {
         return token != null && !token.isExpired();
     }
 
-    public class UsernameOrPasswordIncorrect extends RuntimeException {}
+    public class InvalidVariableOrFunctionException extends RuntimeException {}
+    public class UsernameOrPasswordIncorrectException extends RuntimeException {}
+    public class NotAuthorizedForThisCoreException extends RuntimeException {}
+    public class CoreNotConnectedToCloudException extends RuntimeException {}
+    public class SparkCloudConnectionTimeoutException extends RuntimeException {}
+    public class NetworkConnectionErrorException extends RuntimeException {}
+    public class UnknownNetworkConnectionErrorException extends RuntimeException {}
 
 }
