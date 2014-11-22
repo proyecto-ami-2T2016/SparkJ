@@ -1,6 +1,6 @@
-package com.infinity.sparkler.IntegrationTests;
+package com.infinity.sparkler;
 
-import com.infinity.sparkler.SparkDevice;
+import com.infinity.sparkler.Tools.SparkCredentials;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,12 +10,11 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SparkDeviceIntegrationTests {
-    private SparkCredentials credentials;
     private SparkDevice device;
 
     @Before
     public void setup() throws IOException {
-        credentials = new SparkCredentials("credentials.txt");
+        SparkCredentials credentials = new SparkCredentials("credentials.txt");
         device = new SparkDevice(credentials.deviceId, credentials.username, credentials.password);
     }
 

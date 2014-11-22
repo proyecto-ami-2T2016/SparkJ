@@ -1,4 +1,4 @@
-package com.infinity.sparkler.IntegrationTests;
+package com.infinity.sparkler.Tools;
 
 import java.io.*;
 
@@ -12,5 +12,6 @@ public class SparkCredentials {
         deviceId = br.readLine();
         username = br.readLine();
         password = br.readLine();
+        br.close();
     }
 }
