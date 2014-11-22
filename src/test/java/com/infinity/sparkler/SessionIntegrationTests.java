@@ -12,12 +12,12 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class SessionIntegrationTests {
-    private SparkCloudSession session;
+    private SparkSession session;
 
     @Before
     public void setup() throws IOException {
         SparkCredentials credentials = new SparkCredentials("credentials.txt");
-        session = new SparkCloudSession(credentials.username, credentials.password);
+        session = new SparkSession(credentials.username, credentials.password);
     }
 
     @Test
@@ -36,7 +36,7 @@ public class SessionIntegrationTests {
 
     private Collection<IToken> listTokens() {
         Collection<IToken> tokens = session.listTokensOnServer();
-        tokens.removeIf(t -> !t.getClientName().equals(SparkCloudSession.clientName));
+        tokens.removeIf(t -> !t.getClientName().equals(SparkSession.clientName));
         return tokens;
     }
 

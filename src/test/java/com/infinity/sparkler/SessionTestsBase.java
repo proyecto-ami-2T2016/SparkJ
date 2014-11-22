@@ -20,7 +20,7 @@ public abstract class SessionTestsBase {
     private static final String authentication = "Basic dXNlcm5hbWUxOnBhc3N3b3JkMQ==";
     private static final String username = "username1";
     private static final String password = "password1";
-    protected SparkCloudSession session;
+    protected SparkSession session;
     protected SparkCloudSim sim;
     protected ObjectMapper om;
 
@@ -28,7 +28,7 @@ public abstract class SessionTestsBase {
     public void before() {
         sim  = new SparkCloudSim();
         sim.startSpark();
-        session = new SparkCloudSession(username, password, "http://localhost:4567");
+        session = new SparkSession(username, password, "http://localhost:4567");
         om = new ObjectMapper();
     }
 
@@ -53,8 +53,8 @@ public abstract class SessionTestsBase {
         req.add(new ExpectedField("grant_type", "password"));
         req.add(new ExpectedField("username", username));
         req.add(new ExpectedField("password", password));
-        req.add(new ExpectedField("client_id", SparkCloudSession.clientName));
-        req.add(new ExpectedField("client_secret", SparkCloudSession.clientName));
+        req.add(new ExpectedField("client_id", SparkSession.clientName));
+        req.add(new ExpectedField("client_secret", SparkSession.clientName));
 
         sim.expectRequest(req);
     }

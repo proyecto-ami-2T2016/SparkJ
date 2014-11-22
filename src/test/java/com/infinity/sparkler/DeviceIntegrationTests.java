@@ -9,7 +9,7 @@ import java.io.IOException;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class SparkDeviceIntegrationTests {
+public class DeviceIntegrationTests {
     private SparkDevice device;
 
     @Before

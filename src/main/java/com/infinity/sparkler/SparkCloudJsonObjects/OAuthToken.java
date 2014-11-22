@@ -1,7 +1,7 @@
 package com.infinity.sparkler.SparkCloudJsonObjects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.infinity.sparkler.SparkCloudSession;
+import com.infinity.sparkler.SparkSession;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OAuthToken extends TokenBase {
@@ -21,7 +21,7 @@ public class OAuthToken extends TokenBase {
 
     @Override
     public String getClientName() {
-        return SparkCloudSession.clientName;
+        return SparkSession.clientName;
     }
 
     @Override

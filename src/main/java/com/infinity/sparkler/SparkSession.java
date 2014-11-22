@@ -13,7 +13,7 @@ import com.mashape.unirest.request.body.MultipartBody;
 import java.util.Collection;
 import java.util.List;
 
-public class SparkCloudSession implements AutoCloseable {
+public class SparkSession implements AutoCloseable {
 
     public static final String clientName = "sparkler-java-client";
     private static final String defaultBaseUrl = "https://api.spark.io";
@@ -23,11 +23,11 @@ public class SparkCloudSession implements AutoCloseable {
     private String username;
     private String password;
 
-    public SparkCloudSession(String username, String password) {
+    public SparkSession(String username, String password) {
         this(username, password, defaultBaseUrl);
     }
 
-    public SparkCloudSession(String username, String password, String baseUrl) {
+    public SparkSession(String username, String password, String baseUrl) {
         this.username = username;
         this.password = password;
         this.baseUrl = baseUrl;

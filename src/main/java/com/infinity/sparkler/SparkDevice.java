@@ -10,14 +10,14 @@ import com.mashape.unirest.request.body.MultipartBody;
 
 public class SparkDevice implements ISparkDevice {
 
-    private SparkCloudSession session;
+    private SparkSession session;
     private String deviceId;
 
     public SparkDevice(String id, String username, String password) {
-        this(id, new SparkCloudSession(username, password));
+        this(id, new SparkSession(username, password));
     }
 
-    public SparkDevice(String id, SparkCloudSession session) {
+    public SparkDevice(String id, SparkSession session) {
         deviceId = id;
         this.session = session;
         if(!session.connected()) {
