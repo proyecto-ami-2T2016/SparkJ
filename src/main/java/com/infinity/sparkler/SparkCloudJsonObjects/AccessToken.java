@@ -2,6 +2,7 @@ package com.infinity.sparkler.SparkCloudJsonObjects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.time.Instant;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -17,7 +18,7 @@ public class AccessToken extends TokenBase {
 
     @Override
     public boolean isExpired() {
-        return false;
+        return Instant.now().plusSeconds(60).isAfter(expires_at.toInstant());
     }
 
     @Override

@@ -23,7 +23,7 @@ class SparkRestApi {
                 case 408:
                     throw new SparkCloudConnectionTimeoutException();
                 case 500:
-                    throw new SparkCloundNotAvailableException();
+                    throw new SparkCloudNotAvailableException();
                 default:
                     throw new UnknownNetworkConnectionErrorException();
             }
@@ -48,7 +48,7 @@ class SparkRestApi {
     static public class NotAuthorizedForThisCoreException extends RuntimeException {}
     static public class CoreNotConnectedToCloudException extends RuntimeException {}
     static public class SparkCloudConnectionTimeoutException extends RuntimeException {}
-    static public class SparkCloundNotAvailableException extends RuntimeException {}
+    static public class SparkCloudNotAvailableException extends RuntimeException {}
     static public class UnknownNetworkConnectionErrorException extends RuntimeException {}
     static public class UnableToParseSparkCloudResponseException extends RuntimeException {}
 }

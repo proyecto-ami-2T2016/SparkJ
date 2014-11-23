@@ -3,6 +3,7 @@ package com.infinity.sparkler;
 import com.infinity.sparkler.SparkCloudJsonObjects.IToken;
 import com.infinity.sparkler.Tools.SparkCredentials;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -26,7 +27,8 @@ public class SessionIntegrationTests {
         assertThat(tokens.isEmpty(), is(false));
     }
 
-    @Test(timeout=3000)
+    @Ignore
+    @Test(timeout=10000)
     public void createAndDeleteToken() {
         IToken newToken = session.createNewToken();
         assertThat(hasToken(listTokens(), newToken.getKey()), is(true));

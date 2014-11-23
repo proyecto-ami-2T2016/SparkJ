@@ -74,7 +74,7 @@ public class DeviceFunctionsTests extends DeviceTestsBase {
         device.callFunction(function, args);
     }
 
-    @Test(expected = SparkRestApi.SparkCloundNotAvailableException.class)
+    @Test(expected = SparkRestApi.SparkCloudNotAvailableException.class)
     public void status500ThrowsSparkCloudNotAvailable() {
         String args = "args1";
         String function = "function1";

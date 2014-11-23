@@ -37,4 +37,14 @@ public class DeviceIntegrationTests {
     public void readDblVariable() {
         assertThat(device.readVariable("TestVarDbl"), is("1.5"));
     }
+
+    @Test(expected = SparkRestApi.InvalidVariableOrFunctionException.class, timeout = 3000)
+    public void fakeFunctionThrowsInvalidVariableOrFunction() {
+        device.callFunction("DoesNotExist", "");
+    }
+
+    @Test(expected = SparkRestApi.InvalidVariableOrFunctionException.class, timeout = 3000)
+    public void fakeVariableThrowsInvalidVariableOrFunction() {
+        device.readVariable("DoesNotExist");
+    }
 }

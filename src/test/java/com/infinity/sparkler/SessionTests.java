@@ -29,7 +29,7 @@ public class SessionTests extends SessionTestsBase {
         assertThat(session.listTokensOnServer(), is(nullValue()));
     }
 
-    @Test(expected = SparkRestApi.SparkCloundNotAvailableException.class)
+    @Test(expected = SparkRestApi.SparkCloudNotAvailableException.class)
     public void status500WhenGettingTokenListThrowsNetworkConnectionError() {
         expectTokenListRequest();
         respondWithStatusCode(500);

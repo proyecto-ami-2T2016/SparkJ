@@ -74,7 +74,7 @@ public class SparkSession implements AutoCloseable {
         HttpRequestWithBody req = Unirest.delete(baseUrl + "/v1/access_tokens/" + token.getKey())
                 .header("accept", "application/json")
                 .basicAuth(username, password);
-        HttpResponse<String> res = SparkRestApi.sendRequest(req);
+        HttpResponse<String> res = SparkRestApi.sendRequest(req.getHttpRequest());
         return res.getBody().contains("true");
     }
 
@@ -89,5 +89,11 @@ public class SparkSession implements AutoCloseable {
 
     protected boolean connected() {
         return token != null && !token.isExpired();
+    }
+
+    protected void checkToken() {
+        if(!connected()) {
+            connect();
+        }
     }
 }
