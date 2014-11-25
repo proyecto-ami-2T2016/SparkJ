@@ -1,4 +1,4 @@
-package com.infinity.sparkler.Messages;
+package com.infinity.sparkj.Messages;
 
 public class ExpectedField {
     public String key;

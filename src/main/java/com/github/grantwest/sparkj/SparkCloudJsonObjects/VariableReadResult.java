@@ -1,4 +1,4 @@
-package com.infinity.sparkler.SparkCloudJsonObjects;
+package com.infinity.sparkj.SparkCloudJsonObjects;
 
 import java.util.Map;
 

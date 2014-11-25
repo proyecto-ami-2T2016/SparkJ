@@ -1,11 +1,11 @@
-package com.infinity.sparkler.Messages;
+package com.infinity.sparkj.Messages;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.junit.Assert.assertEquals;
 
-import com.infinity.sparkler.SparkCloudJsonObjects.AccessToken;
+import com.infinity.sparkj.SparkCloudJsonObjects.AccessToken;
 import spark.Request;
 
 import java.util.LinkedList;

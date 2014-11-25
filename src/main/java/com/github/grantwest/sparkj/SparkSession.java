@@ -1,9 +1,9 @@
-package com.infinity.sparkler;
+package com.infinity.sparkj;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.infinity.sparkler.SparkCloudJsonObjects.AccessToken;
-import com.infinity.sparkler.SparkCloudJsonObjects.IToken;
-import com.infinity.sparkler.SparkCloudJsonObjects.OAuthToken;
+import com.infinity.sparkj.SparkCloudJsonObjects.AccessToken;
+import com.infinity.sparkj.SparkCloudJsonObjects.IToken;
+import com.infinity.sparkj.SparkCloudJsonObjects.OAuthToken;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.request.HttpRequest;

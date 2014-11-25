@@ -1,10 +1,10 @@
-package com.infinity.sparkler;
+package com.infinity.sparkj;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsNull.nullValue;
 
-import com.infinity.sparkler.SparkCloudJsonObjects.IToken;
+import com.infinity.sparkj.SparkCloudJsonObjects.IToken;
 import org.junit.Test;
 
 import java.util.Arrays;

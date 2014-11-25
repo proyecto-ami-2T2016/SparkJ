@@ -1,6 +1,6 @@
-package com.infinity.sparkler;
+package com.infinity.sparkj;
 
-import com.infinity.sparkler.Tools.SparkCredentials;
+import com.infinity.sparkj.Tools.SparkCredentials;
 import org.junit.Before;
 import org.junit.Test;
 

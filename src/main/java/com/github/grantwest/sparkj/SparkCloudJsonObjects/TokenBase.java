@@ -1,4 +1,4 @@
-package com.infinity.sparkler.SparkCloudJsonObjects;
+package com.infinity.sparkj.SparkCloudJsonObjects;
 
 public abstract class TokenBase implements IToken {
     @Override

@@ -1,4 +1,4 @@
-package com.infinity.sparkler;
+package com.infinity.sparkj;
 
 public interface ISparkDevice
 {

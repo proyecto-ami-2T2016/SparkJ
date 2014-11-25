@@ -1,7 +1,7 @@
-package com.infinity.sparkler.SparkCloudJsonObjects;
+package com.infinity.sparkj.SparkCloudJsonObjects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.infinity.sparkler.SparkSession;
+import com.infinity.sparkj.SparkSession;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class OAuthToken extends TokenBase {

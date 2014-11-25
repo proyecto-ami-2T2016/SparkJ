@@ -1,14 +1,14 @@
-package com.infinity.sparkler;
+package com.infinity.sparkj;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.infinity.sparkler.Messages.ExpectedField;
-import com.infinity.sparkler.Messages.ExpectedRequest;
-import com.infinity.sparkler.Messages.TestResponse;
-import com.infinity.sparkler.SparkCloudJsonObjects.AccessToken;
-import com.infinity.sparkler.SparkCloudJsonObjects.IToken;
-import com.infinity.sparkler.SparkCloudJsonObjects.OAuthToken;
-import com.infinity.sparkler.SparkCloudSim.SparkCloudSim;
+import com.infinity.sparkj.Messages.ExpectedField;
+import com.infinity.sparkj.Messages.ExpectedRequest;
+import com.infinity.sparkj.Messages.TestResponse;
+import com.infinity.sparkj.SparkCloudJsonObjects.AccessToken;
+import com.infinity.sparkj.SparkCloudJsonObjects.IToken;
+import com.infinity.sparkj.SparkCloudJsonObjects.OAuthToken;
+import com.infinity.sparkj.SparkCloudSim.SparkCloudSim;
 import org.junit.After;
 import org.junit.Before;
 

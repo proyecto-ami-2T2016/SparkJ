@@ -2,13 +2,13 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.infinity.sparkler</groupId>
-    <artifactId>sparkler</artifactId>
+    <groupId>com.github.grantwest.sparkj</groupId>
+    <artifactId>sparkj</artifactId>
     <version>0.0.0</version>
     <packaging>jar</packaging>
 
-    <name>sparkler</name>
-    <url>http://maven.apache.org</url>
+    <name>SparkJ</name>
+    <url>https://github.com/grantwest/SparkJ</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

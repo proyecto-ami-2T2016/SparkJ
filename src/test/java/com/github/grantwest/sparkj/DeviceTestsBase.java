@@ -1,4 +1,4 @@
-package com.infinity.sparkler;
+package com.infinity.sparkj;
 
 import org.junit.Before;
 

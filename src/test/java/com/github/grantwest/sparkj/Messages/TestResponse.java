@@ -1,4 +1,4 @@
-package com.infinity.sparkler.Messages;
+package com.infinity.sparkj.Messages;
 
 import spark.Response;
 
