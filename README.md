@@ -1,4 +1,4 @@
-SparkJ: A Java library for interfacing with the SparkCloud
+SparkJ: Control the SparkCloud w/ Java
 =======
 
 ## Usage
@@ -27,7 +27,7 @@ Lastly, if you are instantiating multiple devices, this method will result in fe
 ```java
   SparkSession session = new SparkSession("username", "password");
   ISparkDevice dev1 = new SparkDevice("50df6b0651675496402a02b7", session);
-  ISparkDevice dev2 = new SparkDevice("50df6b0651675496402a02b7", session);
+  ISparkDevice dev2 = new SparkDevice("5496402a02b000df6b06516c", session);
 ```
 
 
