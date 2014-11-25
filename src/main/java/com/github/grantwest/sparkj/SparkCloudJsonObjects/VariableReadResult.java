@@ -1,4 +1,4 @@
-package com.infinity.sparkj.SparkCloudJsonObjects;
+package com.github.grantwest.sparkj.SparkCloudJsonObjects;
 
 import java.util.Map;
 

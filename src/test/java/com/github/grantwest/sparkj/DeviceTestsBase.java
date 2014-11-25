@@ -1,7 +1,6 @@
-package com.infinity.sparkj;
+package com.github.grantwest.sparkj;
 
 import org.junit.Before;
-
 import java.util.Arrays;
 
 public abstract class DeviceTestsBase extends SessionTestsBase {

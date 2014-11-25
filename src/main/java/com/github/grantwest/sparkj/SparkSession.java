@@ -1,9 +1,9 @@
-package com.infinity.sparkj;
+package com.github.grantwest.sparkj;
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.infinity.sparkj.SparkCloudJsonObjects.AccessToken;
-import com.infinity.sparkj.SparkCloudJsonObjects.IToken;
-import com.infinity.sparkj.SparkCloudJsonObjects.OAuthToken;
+import com.github.grantwest.sparkj.SparkCloudJsonObjects.AccessToken;
+import com.github.grantwest.sparkj.SparkCloudJsonObjects.IToken;
+import com.github.grantwest.sparkj.SparkCloudJsonObjects.OAuthToken;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.request.HttpRequest;

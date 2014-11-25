@@ -1,7 +1,7 @@
-package com.infinity.sparkj.SparkCloudSim;
+package com.github.grantwest.sparkj.SparkCloudSim;
 
-import com.infinity.sparkj.Messages.ExpectedRequest;
-import com.infinity.sparkj.Messages.TestResponse;
+import com.github.grantwest.sparkj.Messages.ExpectedRequest;
+import com.github.grantwest.sparkj.Messages.TestResponse;
 import spark.Request;
 import spark.Response;
 

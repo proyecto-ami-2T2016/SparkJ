@@ -1,7 +1,6 @@
-package com.infinity.sparkj.Messages;
+package com.github.grantwest.sparkj.Messages;
 
 import spark.Response;
-
 import java.util.ArrayList;
 import java.util.List;
 

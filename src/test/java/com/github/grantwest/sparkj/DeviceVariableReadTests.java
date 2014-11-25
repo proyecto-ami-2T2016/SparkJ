@@ -1,10 +1,10 @@
-package com.infinity.sparkj;
+package com.github.grantwest.sparkj;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.infinity.sparkj.Messages.ExpectedRequest;
-import com.infinity.sparkj.Messages.TestResponse;
-import com.infinity.sparkj.SparkCloudJsonObjects.AccessToken;
-import com.infinity.sparkj.SparkCloudJsonObjects.VariableReadResult;
+import com.github.grantwest.sparkj.Messages.ExpectedRequest;
+import com.github.grantwest.sparkj.Messages.TestResponse;
+import com.github.grantwest.sparkj.SparkCloudJsonObjects.AccessToken;
+import com.github.grantwest.sparkj.SparkCloudJsonObjects.VariableReadResult;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.is;

@@ -1,4 +1,4 @@
-package com.infinity.sparkj.SparkCloudJsonObjects;
+package com.github.grantwest.sparkj.SparkCloudJsonObjects;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

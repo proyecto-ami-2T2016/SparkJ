@@ -1,7 +1,7 @@
-package com.infinity.sparkj;
+package com.github.grantwest.sparkj;
 
-import com.infinity.sparkj.SparkCloudJsonObjects.IToken;
-import com.infinity.sparkj.Tools.SparkCredentials;
+import com.github.grantwest.sparkj.SparkCloudJsonObjects.IToken;
+import com.github.grantwest.sparkj.Tools.SparkCredentials;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

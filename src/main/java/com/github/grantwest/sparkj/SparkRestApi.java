@@ -1,4 +1,4 @@
-package com.infinity.sparkj;
+package com.github.grantwest.sparkj;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;

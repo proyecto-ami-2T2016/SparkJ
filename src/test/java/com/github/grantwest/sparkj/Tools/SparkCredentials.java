@@ -1,4 +1,4 @@
-package com.infinity.sparkj.Tools;
+package com.github.grantwest.sparkj.Tools;
 
 import java.io.*;
 

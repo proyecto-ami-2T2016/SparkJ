@@ -1,9 +1,8 @@
-package com.infinity.sparkj;
+package com.github.grantwest.sparkj;
 
-import com.infinity.sparkj.Tools.SparkCredentials;
+import com.github.grantwest.sparkj.Tools.SparkCredentials;
 import org.junit.Before;
 import org.junit.Test;
-
 import java.io.IOException;
 
 import static org.hamcrest.CoreMatchers.is;

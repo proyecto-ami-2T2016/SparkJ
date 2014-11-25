@@ -1,17 +1,16 @@
-package com.infinity.sparkj;
+package com.github.grantwest.sparkj;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.infinity.sparkj.Messages.ExpectedField;
-import com.infinity.sparkj.Messages.ExpectedRequest;
-import com.infinity.sparkj.Messages.TestResponse;
-import com.infinity.sparkj.SparkCloudJsonObjects.AccessToken;
-import com.infinity.sparkj.SparkCloudJsonObjects.IToken;
-import com.infinity.sparkj.SparkCloudJsonObjects.OAuthToken;
-import com.infinity.sparkj.SparkCloudSim.SparkCloudSim;
+import com.github.grantwest.sparkj.Messages.ExpectedField;
+import com.github.grantwest.sparkj.Messages.ExpectedRequest;
+import com.github.grantwest.sparkj.Messages.TestResponse;
+import com.github.grantwest.sparkj.SparkCloudJsonObjects.AccessToken;
+import com.github.grantwest.sparkj.SparkCloudJsonObjects.IToken;
+import com.github.grantwest.sparkj.SparkCloudJsonObjects.OAuthToken;
+import com.github.grantwest.sparkj.SparkCloudSim.SparkCloudSim;
 import org.junit.After;
 import org.junit.Before;
-
 import java.time.Instant;
 import java.util.Date;
 import java.util.List;

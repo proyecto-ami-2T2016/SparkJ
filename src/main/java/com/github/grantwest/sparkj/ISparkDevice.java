@@ -1,4 +1,4 @@
-package com.infinity.sparkj;
+package com.github.grantwest.sparkj;
 
 public interface ISparkDevice
 {
