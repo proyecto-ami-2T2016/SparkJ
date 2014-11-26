@@ -10,7 +10,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class DeviceVariableReadTests extends DeviceTestsBase {
+public class DeviceVariableReadTest extends DeviceTestsBase {
 
     @Test
     public void readsVariableSuccessfully() throws JsonProcessingException {

@@ -9,7 +9,7 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.List;
 
-public class SessionTests extends SessionTestsBase {
+public class SessionTest extends SessionTestsBase {
 
     @Test
     public void getsListOfTokensFromServer() {

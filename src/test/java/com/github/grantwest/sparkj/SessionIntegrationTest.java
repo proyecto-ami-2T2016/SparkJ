@@ -12,7 +12,7 @@ import java.util.Collection;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class SessionIntegrationTests {
+public class SessionIntegrationTest {
     private SparkSession session;
 
     @Before

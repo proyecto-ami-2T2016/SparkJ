@@ -4,7 +4,7 @@
 
     <groupId>com.github.grantwest.sparkj</groupId>
     <artifactId>sparkj</artifactId>
-    <version>0.0.0</version>
+    <version>0.0.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>SparkJ</name>
@@ -23,6 +23,11 @@
     <build>
         <pluginManagement>
             <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>2.18</version>
+                </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-gpg-plugin</artifactId>

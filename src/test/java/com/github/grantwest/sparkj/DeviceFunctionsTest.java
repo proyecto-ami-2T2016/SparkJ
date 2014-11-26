@@ -12,7 +12,7 @@ import org.junit.Test;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-public class DeviceFunctionsTests extends DeviceTestsBase {
+public class DeviceFunctionsTest extends DeviceTestsBase {
 
     @Test
     public void callsFunctionSuccessfully() throws JsonProcessingException {
