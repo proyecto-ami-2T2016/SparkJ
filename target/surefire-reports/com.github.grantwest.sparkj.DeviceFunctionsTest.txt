@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.github.grantwest.sparkj.DeviceFunctionsTest
--------------------------------------------------------------------------------
-Tests run: 7, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.961 sec - in com.github.grantwest.sparkj.DeviceFunctionsTest
