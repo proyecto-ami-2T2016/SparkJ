@@ -25,6 +25,9 @@
         <module name="Sparkler" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="Sparkler" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
 
