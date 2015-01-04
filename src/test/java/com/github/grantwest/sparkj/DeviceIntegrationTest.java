@@ -14,7 +14,7 @@ public class DeviceIntegrationTest {
 
     @Before
     public void setup() throws IOException {
-        SparkCredentials credentials = new SparkCredentials("credentials.txt");
+        SparkCredentials credentials = new SparkCredentials("C:\\credentials.txt");
         device = new SparkDevice(credentials.deviceId, credentials.username, credentials.password);
     }
 
