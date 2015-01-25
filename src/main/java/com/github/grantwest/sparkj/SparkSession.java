@@ -87,13 +87,15 @@ public class SparkSession implements AutoCloseable {
         return token.getKey();
     }
 
-    protected boolean connected() {
+    protected boolean checkToken() {
         return token != null && !token.isExpired();
     }
 
-    protected void checkToken() {
-        if(!connected()) {
-            connect();
-        }
+    protected boolean connected() {
+        return checkToken();
+    }
+
+    protected void connectIfNotConnected(){
+        if(!connected()) connect();
     }
 }

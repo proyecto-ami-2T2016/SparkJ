@@ -20,14 +20,12 @@ public class SparkDevice implements ISparkDevice {
     public SparkDevice(String id, SparkSession session) {
         deviceId = id;
         this.session = session;
-        if(!session.connected()) {
-            session.connect();
-        }
+        this.session.connectIfNotConnected();
     }
 
     @Override
     public String readVariable(String variableName) {
-        session.checkToken();
+        session.connectIfNotConnected();
         HttpRequest req = Unirest.get(session.baseUrl + "/v1/devices/" + deviceId + "/" + variableName + "?access_token=" + session.getTokenKey())
                 .header("accept", "application/json");
         HttpResponse<String> res = SparkRestApi.sendRequest(req);
@@ -36,7 +34,7 @@ public class SparkDevice implements ISparkDevice {
 
     @Override
     public int callFunction(String functionName, String arguments) {
-        session.checkToken();
+        session.connectIfNotConnected();
         MultipartBody req = Unirest.post(session.baseUrl + "/v1/devices/" + deviceId + "/" + functionName)
                 .header("accept", "application/json")
                 .field("access_token", session.getTokenKey())
