@@ -3,7 +3,7 @@ SparkJ: Control the SparkCloud w/ Java
 
 ## Usage
 
-SparkJ is a maven project is available from the Maven Central repository. To use SparkJ add this to your pom.xml:
+SparkJ is a maven project and is available from the Maven Central repository. To use SparkJ add this to your pom.xml:
 
 ```xml
 <dependency>
@@ -15,9 +15,9 @@ SparkJ is a maven project is available from the Maven Central repository. To use
 
 Example of calling functions and reading variables:
 ```java
-ISparkDevice dev = new SparkDevice("50df6b0651675496402a02b7", "username", "password");
-int funcResult = dev.callFunction("functionName", "argsHere");
-String varValue = dev.readVariable("varName");
+ISparkDevice device = new SparkDevice("50df6b0651675496402a02b7", "username", "password");
+int funcResult = device.callFunction("functionName", "argsHere");
+String varValue = device.readVariable("varName");
 ```
 
 Yup, it's that easy. Right now those are the only 2 features that it supports, but more are on the way.
