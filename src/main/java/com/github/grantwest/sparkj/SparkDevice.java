@@ -8,6 +8,8 @@ import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.request.HttpRequest;
 import com.mashape.unirest.request.body.MultipartBody;
 
+import java.util.Arrays;
+
 public class SparkDevice implements ISparkDevice {
 
     private SparkSession session;

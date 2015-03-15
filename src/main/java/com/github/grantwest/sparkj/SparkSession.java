@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.github.grantwest.sparkj.SparkCloudJsonObjects.AccessToken;
 import com.github.grantwest.sparkj.SparkCloudJsonObjects.IToken;
 import com.github.grantwest.sparkj.SparkCloudJsonObjects.OAuthToken;
+import com.github.grantwest.sparkj.SparkCloudJsonObjects.SparkEvent;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.request.HttpRequest;
@@ -12,6 +13,7 @@ import com.mashape.unirest.request.body.MultipartBody;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.function.Consumer;
 
 public class SparkSession implements AutoCloseable {
 
@@ -32,6 +34,8 @@ public class SparkSession implements AutoCloseable {
         this.password = password;
         this.baseUrl = baseUrl;
     }
+
+
 
     protected boolean connect() {
         token = getTokenFromServer();
