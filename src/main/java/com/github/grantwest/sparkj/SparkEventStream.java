@@ -9,6 +9,7 @@ import org.glassfish.jersey.media.sse.EventListener;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.HttpHeaders;
 import java.util.function.Consumer;
 
 public class SparkEventStream implements AutoCloseable {
@@ -16,11 +17,12 @@ public class SparkEventStream implements AutoCloseable {
     private Consumer<SparkEvent> eventHandler;
     private EventSource eventSource;
 
-    private SparkEventStream(String baseUrl, String key) {
+    private SparkEventStream(String baseUrl, String token) {
         Client client = ClientBuilder.newClient();
         client.register(SseFeature.class);
-        WebTarget target = client.target(baseUrl + "/v1/devices/events")
-                .property("Authorization", "Bearer " + key);
+        WebTarget target = client.target(baseUrl + "/v1/devices/events");
+        target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + token);
+
 //        Client client = ClientBuilder.newBuilder().register(SseFeature.class).build();
 //        WebTarget target = client.target(baseUrl + "/v1/devices/events/");
         eventSource = EventSource.target(target).build();
