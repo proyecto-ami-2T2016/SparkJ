@@ -13,11 +13,12 @@ import com.mashape.unirest.request.body.MultipartBody;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 public class SparkSession implements AutoCloseable {
 
-    public static final String clientName = "sparkler-java-client";
+    public static final String clientName = "sparkj-java-client";
     private static final String defaultBaseUrl = "https://api.spark.io";
 
     protected String baseUrl;
@@ -35,22 +36,17 @@ public class SparkSession implements AutoCloseable {
         this.baseUrl = baseUrl;
     }
 
-
-
     protected boolean connect() {
         token = getTokenFromServer();
         return token != null;
     }
 
     private IToken getTokenFromServer() {
-        Collection<IToken> tokens = listTokensOnServer();
-        tokens.removeIf(t -> !t.getClientName().equals(clientName));
-        tokens.removeIf(IToken::isExpired);
-        if(!tokens.isEmpty()) {
-            return tokens.iterator().next();
-        } else {
-            return createNewToken();
-        }
+        Optional<IToken> token = listTokensOnServer().stream()
+                .filter(t -> t.getClientName().equals(clientName))
+                .filter(t -> !t.isExpired())
+                .findFirst();
+        return token.orElseGet(this::createNewToken);
     }
 
     protected Collection<IToken> listTokensOnServer() {
