@@ -1,4 +1,4 @@
-SparkJ: Control the SparkCloud w/ Java
+SparkJ: Control the ParticleCloud w/ Java
 =======
 
 ## Usage
@@ -9,7 +9,7 @@ SparkJ is a maven project and is available from the Maven Central repository. To
 <dependency>
   <groupId>com.github.grantwest.sparkj</groupId>
   <artifactId>sparkj</artifactId>
-  <version>0.0.0</version>
+  <version>0.0.1</version>
 </dependency>
 ```
 
@@ -39,6 +39,6 @@ Lastly, if you are instantiating many devices, this method will result in fewer 
 
 ## Documentation
 
-Full SparkCloud documentation and examples on how to write your Spark device code can be found here:
-http://docs.spark.io/api/
+Full ParticleCloud documentation and examples on how to write your Particle device code can be found here:
+https://docs.particle.io/reference/api/
 
