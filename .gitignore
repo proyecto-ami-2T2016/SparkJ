@@ -60,5 +60,6 @@ $RECYCLE.BIN/
 *.msp
 
 .idea
+*.iml
 credentials.txt
 target
