@@ -20,9 +20,15 @@ int funcResult = device.callFunction("functionName", "argsHere");
 String varValue = device.readVariable("varName");
 ```
 
-Yup, it's that easy. Right now those are the only 2 features that it supports, but more are on the way.
+Example of subscribing to a device's event stream:
+```java
+SparkDevice device = new SparkDevice("50df6b0651675496402a02b7", "username", "password");
+SparkEventStream stream = device.eventStream((event) -> System.out.println(event.toString()));
+//You will need to wait here because the event stream is asynchronous
+```
+It is also possible to get other event streams by using the myEvents() and publicEvents() methods of the SparkEventStream class.
 
-Lastly, if you are instantiating multiple devices, this method will result in fewer HTTP requests:
+Lastly, if you are instantiating many devices, this method will result in fewer HTTP requests:
 
 ```java
   SparkSession session = new SparkSession("username", "password");
