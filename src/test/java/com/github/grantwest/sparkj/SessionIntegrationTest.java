@@ -17,7 +17,7 @@ public class SessionIntegrationTest {
 
     @Before
     public void setup() throws IOException {
-        SparkCredentials credentials = new SparkCredentials("C:\\credentials.txt");
+        SparkCredentials credentials = new SparkCredentials("~/credentials.txt");
         session = new SparkSession(credentials.username, credentials.password);
     }
 

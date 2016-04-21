@@ -10,7 +10,7 @@ import com.mashape.unirest.request.body.MultipartBody;
 
 import java.util.Arrays;
 
-public class SparkDevice implements ISparkDevice {
+public class SparkDevice {
 
     private SparkSession session;
     private String deviceId;
@@ -25,7 +25,6 @@ public class SparkDevice implements ISparkDevice {
         this.session.connectIfNotConnected();
     }
 
-    @Override
     public String readVariable(String variableName) {
         session.connectIfNotConnected();
         HttpRequest req = Unirest.get(session.baseUrl + "/v1/devices/" + deviceId + "/" + variableName + "?access_token=" + session.getTokenKey())
@@ -34,7 +33,6 @@ public class SparkDevice implements ISparkDevice {
         return ((VariableReadResult) SparkRestApi.jsonToObject(res.getBody(), new TypeReference<VariableReadResult>() {})).result;
     }
 
-    @Override
     public int callFunction(String functionName, String arguments) {
         session.connectIfNotConnected();
         MultipartBody req = Unirest.post(session.baseUrl + "/v1/devices/" + deviceId + "/" + functionName)

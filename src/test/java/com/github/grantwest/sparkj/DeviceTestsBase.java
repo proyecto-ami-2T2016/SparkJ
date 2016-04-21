@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public abstract class DeviceTestsBase extends SessionTestsBase {
     protected static final String deviceId = "1234567890";
-    protected ISparkDevice device;
+    protected SparkDevice device;
 
     @Before
     public void SetupDevice() {

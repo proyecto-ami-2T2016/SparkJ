@@ -20,7 +20,7 @@ public class SparkEventStreamIntegrationTest {
 
     @Before
     public void setup() throws IOException {
-        SparkCredentials credentials = new SparkCredentials("C:\\credentials.txt");
+        SparkCredentials credentials = new SparkCredentials("~/credentials.txt");
         session = new SparkSession(credentials.username, credentials.password);
         device = new SparkDevice(credentials.deviceId, session);
         eventsReceived = 0;

@@ -15,7 +15,7 @@ SparkJ is a maven project and is available from the Maven Central repository. To
 
 Example of calling functions and reading variables:
 ```java
-ISparkDevice device = new SparkDevice("50df6b0651675496402a02b7", "username", "password");
+SparkDevice device = new SparkDevice("50df6b0651675496402a02b7", "username", "password");
 int funcResult = device.callFunction("functionName", "argsHere");
 String varValue = device.readVariable("varName");
 ```
@@ -26,8 +26,8 @@ Lastly, if you are instantiating multiple devices, this method will result in fe
 
 ```java
   SparkSession session = new SparkSession("username", "password");
-  ISparkDevice dev1 = new SparkDevice("50df6b0651675496402a02b7", session);
-  ISparkDevice dev2 = new SparkDevice("5496402a02b000df6b06516c", session);
+  SparkDevice dev1 = new SparkDevice("50df6b0651675496402a02b7", session);
+  SparkDevice dev2 = new SparkDevice("5496402a02b000df6b06516c", session);
 ```
 
 
