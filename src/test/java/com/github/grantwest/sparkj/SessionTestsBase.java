@@ -112,7 +112,7 @@ public abstract class SessionTestsBase {
 
     protected AccessToken sparkjToken() {
         AccessToken at = new AccessToken();
-        at.client = "sparkler-java-client";
+        at.client = "sparkj-java-client";
         at.token = "12345";
         at.expires_at = Date.from(Instant.now().plusSeconds(3600));
         return at;
@@ -120,7 +120,7 @@ public abstract class SessionTestsBase {
 
     private AccessToken expiredSparklerToken() {
         AccessToken at = new AccessToken();
-        at.client = "sparkler-java-client";
+        at.client = "sparkj-java-client";
         at.token = "12345678910";
         at.expires_at = Date.from(Instant.now().minusSeconds(3600));
         return at;

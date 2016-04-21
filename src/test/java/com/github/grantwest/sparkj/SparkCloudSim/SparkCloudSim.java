@@ -4,6 +4,7 @@ import com.github.grantwest.sparkj.Messages.ExpectedRequest;
 import com.github.grantwest.sparkj.Messages.TestResponse;
 import spark.Request;
 import spark.Response;
+import spark.Spark;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -23,6 +24,7 @@ public class SparkCloudSim implements AutoCloseable{
         get("/*", (req, res) -> handleRequest(req, res, "get"));
         post("/*", (req, res) -> handleRequest(req, res, "post"));
         delete("/*", (req, res) -> handleRequest(req, res, "delete"));
+        Spark.awaitInitialization();
     }
 
     private String handleRequest(Request req, Response res, String requestType) {

@@ -19,7 +19,7 @@ import java.util.function.Consumer;
 public class SparkSession implements AutoCloseable {
 
     public static final String clientName = "sparkj-java-client";
-    private static final String defaultBaseUrl = "https://api.spark.io";
+    private static final String defaultBaseUrl = "https://api.particle.io";
 
     protected String baseUrl;
     private IToken token;

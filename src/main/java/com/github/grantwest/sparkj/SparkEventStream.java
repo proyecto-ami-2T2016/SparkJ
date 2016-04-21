@@ -6,44 +6,51 @@ import org.glassfish.jersey.media.sse.EventSource;
 import org.glassfish.jersey.media.sse.SseFeature;
 import org.glassfish.jersey.media.sse.EventListener;
 
-import javax.ws.rs.client.Client;
-import javax.ws.rs.client.ClientBuilder;
-import javax.ws.rs.client.WebTarget;
-import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.client.*;
 import java.util.function.Consumer;
 
 public class SparkEventStream implements AutoCloseable {
-    private SparkSession session;
-    private Consumer<SparkEvent> eventHandler;
     private EventSource eventSource;
 
-    private SparkEventStream(String baseUrl, String token) {
-        Client client = ClientBuilder.newClient();
-        client.register(SseFeature.class);
-        WebTarget target = client.target(baseUrl + "/v1/devices/events");
-        target.request().header(HttpHeaders.AUTHORIZATION, "Bearer " + token);
-
-//        Client client = ClientBuilder.newBuilder().register(SseFeature.class).build();
-//        WebTarget target = client.target(baseUrl + "/v1/devices/events/");
+    protected SparkEventStream(WebTarget target, Consumer<SparkEvent> eventHandler) {
         eventSource = EventSource.target(target).build();
-        eventSource.register(getEventListener());
+        eventSource.register(buildEventListener(eventHandler));
         eventSource.open();
     }
 
-    public SparkEventStream(SparkSession session, Consumer<SparkEvent> eventHandler) {
-        this(session.baseUrl, session.getTokenKey());
-        this.eventHandler = eventHandler;
-        this.session = session;
+    public static SparkEventStream publicEvents(SparkSession session, Consumer<SparkEvent> eventHandler) {
+        Client client = ClientBuilder.newBuilder().register(SseFeature.class).build();
+        WebTarget target = client.target(session.baseUrl).path("/v1/events").queryParam("access_token", session.getTokenKey());
+        return new SparkEventStream(target, eventHandler);
+    }
+
+    public static SparkEventStream publicEvents(SparkSession session, String prefixFilter, Consumer<SparkEvent> eventHandler) {
+        Client client = ClientBuilder.newBuilder().register(SseFeature.class).build();
+        WebTarget target = client.target(session.baseUrl).path("/v1/events/" + prefixFilter).queryParam("access_token", session.getTokenKey());
+        return new SparkEventStream(target, eventHandler);
+    }
+
+    public static SparkEventStream myEvents(SparkSession session, Consumer<SparkEvent> eventHandler) {
+        Client client = ClientBuilder.newBuilder().register(SseFeature.class).build();
+        WebTarget target = client.target(session.baseUrl).path("/v1/devices/events").queryParam("access_token", session.getTokenKey());
+        return new SparkEventStream(target, eventHandler);
+    }
+
+    public static SparkEventStream myEvents(SparkSession session, String prefixFilter, Consumer<SparkEvent> eventHandler) {
+        Client client = ClientBuilder.newBuilder().register(SseFeature.class).build();
+        WebTarget target = client.target(session.baseUrl).path("/v1/devices/events/" + prefixFilter).queryParam("access_token", session.getTokenKey());
+        return new SparkEventStream(target, eventHandler);
     }
 
     @Override
-    public void close() throws Exception {
+    public void close() {
         eventSource.close();
     }
 
-    private EventListener getEventListener() {
+    private EventListener buildEventListener(Consumer<SparkEvent> eventHandler) {
         return inboundEvent -> {
             String rawJson = inboundEvent.readData().replaceFirst("^\\{", "{\"name\":\"" + inboundEvent.getName() + "\",");
+            if(rawJson.isEmpty()) return;
             SparkEvent sparkEvent = (SparkEvent) SparkRestApi.jsonToObject(rawJson, new TypeReference<SparkEvent>() {});
             eventHandler.accept(sparkEvent);
         };
