@@ -15,7 +15,7 @@ public abstract class DeviceTestsBase extends SessionTestsBase {
 
     private void connectSession() {
         expectTokenListRequest();
-        respondWithTokenList(Arrays.asList(sparklerToken()));
+        respondWithTokenList(Arrays.asList(sparkjToken()));
         session.connect();
     }
 }

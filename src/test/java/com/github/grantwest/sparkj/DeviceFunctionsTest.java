@@ -19,7 +19,7 @@ public class DeviceFunctionsTest extends DeviceTestsBase {
         String funcName = "function1";
         String args = "args1";
         int returnValue = 5;
-        expectFunctionCall(deviceId, funcName, args, sparklerToken());
+        expectFunctionCall(deviceId, funcName, args, sparkjToken());
         FunctionResult result = new FunctionResult();
         result.id = deviceId;
         result.name = "program1";
@@ -35,7 +35,7 @@ public class DeviceFunctionsTest extends DeviceTestsBase {
         String args = "args1";
         String function = "function1";
 
-        expectFunctionCall(deviceId, function, args, sparklerToken());
+        expectFunctionCall(deviceId, function, args, sparkjToken());
         respondWithStatusCode(400);
 
         device.callFunction(function, args);
@@ -46,7 +46,7 @@ public class DeviceFunctionsTest extends DeviceTestsBase {
         String args = "args1";
         String function = "function1";
 
-        expectFunctionCall(deviceId, function, args, sparklerToken());
+        expectFunctionCall(deviceId, function, args, sparkjToken());
         respondWithStatusCode(403);
 
         device.callFunction(function, args);
@@ -57,7 +57,7 @@ public class DeviceFunctionsTest extends DeviceTestsBase {
         String args = "args1";
         String function = "function1";
 
-        expectFunctionCall(deviceId, function, args, sparklerToken());
+        expectFunctionCall(deviceId, function, args, sparkjToken());
         respondWithStatusCode(404);
 
         device.callFunction(function, args);
@@ -68,7 +68,7 @@ public class DeviceFunctionsTest extends DeviceTestsBase {
         String args = "args1";
         String function = "function1";
 
-        expectFunctionCall(deviceId, function, args, sparklerToken());
+        expectFunctionCall(deviceId, function, args, sparkjToken());
         respondWithStatusCode(408);
 
         device.callFunction(function, args);
@@ -79,7 +79,7 @@ public class DeviceFunctionsTest extends DeviceTestsBase {
         String args = "args1";
         String function = "function1";
 
-        expectFunctionCall(deviceId, function, args, sparklerToken());
+        expectFunctionCall(deviceId, function, args, sparkjToken());
         respondWithStatusCode(500);
 
         device.callFunction(function, args);
@@ -90,7 +90,7 @@ public class DeviceFunctionsTest extends DeviceTestsBase {
         String args = "args1";
         String function = "function1";
 
-        expectFunctionCall(deviceId, function, args, sparklerToken());
+        expectFunctionCall(deviceId, function, args, sparkjToken());
         respondWithStatusCode(505);
 
         device.callFunction(function, args);

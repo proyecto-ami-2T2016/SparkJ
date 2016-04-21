@@ -110,7 +110,7 @@ public abstract class SessionTestsBase {
         return token;
     }
 
-    protected AccessToken sparklerToken() {
+    protected AccessToken sparkjToken() {
         AccessToken at = new AccessToken();
         at.client = "sparkler-java-client";
         at.token = "12345";

@@ -15,7 +15,7 @@ public class SparkEventStreamTest extends SparkEventStreamTestsBase {
 
     @Test
     public void test() {
-        expectRequest(sparklerToken());
+        expectRequest(sparkjToken());
         eventStream = new SparkEventStream(session, null);
     }
 

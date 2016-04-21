@@ -14,7 +14,7 @@ public class SessionTest extends SessionTestsBase {
     @Test
     public void getsListOfTokensFromServer() {
         expectTokenListRequest();
-        List<IToken> tokenList = Arrays.asList(sparklerToken(), randomToken(), randomExpiredToken());
+        List<IToken> tokenList = Arrays.asList(sparkjToken(), randomToken(), randomExpiredToken());
         respondWithTokenList(tokenList);
 
         assertThat(session.listTokensOnServer(), is(tokenList));
@@ -46,17 +46,17 @@ public class SessionTest extends SessionTestsBase {
 
     @Test
     public void deletesToken() {
-        expectDeleteTokenRequest(sparklerToken());
+        expectDeleteTokenRequest(sparkjToken());
         respondWithJson("{ \"ok\": true }");
 
-        assertThat(session.deleteToken(sparklerToken()), is(true));
+        assertThat(session.deleteToken(sparkjToken()), is(true));
     }
 
     @Test
     public void deletesTokenReturnsFalseWhenFailed() {
-        expectDeleteTokenRequest(sparklerToken());
+        expectDeleteTokenRequest(sparkjToken());
         respondWithJson("{ \"ok\": false }");
 
-        assertThat(session.deleteToken(sparklerToken()), is(false));
+        assertThat(session.deleteToken(sparkjToken()), is(false));
     }
 }
