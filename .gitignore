@@ -59,6 +59,6 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 
-.idea/workspace.xml
+.idea
 credentials.txt
 target
