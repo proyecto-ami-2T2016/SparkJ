@@ -6,6 +6,20 @@
     <version>0.0.2</version>
     <packaging>jar</packaging>
 
+    <description>Control the Particle Cloud from Java</description>
+    <licenses>
+        <license>
+            <name>MIT</name>
+            <url>https://raw.githubusercontent.com/grantwest/SparkJ/master/license</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>Grant West</name>
+            <email>grantwest2@gmail.com</email>
+        </developer>
+    </developers>
+
     <name>SparkJ</name>
     <url>https://github.com/grantwest/SparkJ</url>
 
