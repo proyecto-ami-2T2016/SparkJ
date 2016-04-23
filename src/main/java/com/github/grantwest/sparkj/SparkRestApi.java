@@ -28,8 +28,7 @@ class SparkRestApi {
                     throw new UnknownNetworkConnectionErrorException();
             }
         } catch (UnirestException e) {
-            e.printStackTrace();
-            throw new UnknownNetworkConnectionErrorException();
+            throw new UnknownNetworkConnectionErrorException(e);
         }
     }
 
@@ -38,8 +37,7 @@ class SparkRestApi {
             ObjectMapper objectMapper = new ObjectMapper();
             return objectMapper.readValue(json, type);
         } catch (Exception e) {
-            e.printStackTrace();
-            throw new UnableToParseSparkCloudResponseException();
+            throw new UnableToParseSparkCloudResponseException(e);
         }
     }
 
@@ -49,6 +47,15 @@ class SparkRestApi {
     static public class CoreNotConnectedToCloudException extends RuntimeException {}
     static public class SparkCloudConnectionTimeoutException extends RuntimeException {}
     static public class SparkCloudNotAvailableException extends RuntimeException {}
-    static public class UnknownNetworkConnectionErrorException extends RuntimeException {}
-    static public class UnableToParseSparkCloudResponseException extends RuntimeException {}
+    static public class UnknownNetworkConnectionErrorException extends RuntimeException {
+        public UnknownNetworkConnectionErrorException() {}
+        public UnknownNetworkConnectionErrorException(Exception e) {
+            super(e);
+        }
+    }
+    static public class UnableToParseSparkCloudResponseException extends RuntimeException {
+        public UnableToParseSparkCloudResponseException(Exception e) {
+            super(e);
+        }
+    }
 }
