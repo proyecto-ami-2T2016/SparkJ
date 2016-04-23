@@ -13,14 +13,14 @@ SparkJ is a maven project and is available from the Maven Central repository. To
 </dependency>
 ```
 
-Example of calling functions and reading variables:
+Call functions and read variables:
 ```java
 SparkDevice device = new SparkDevice("50df6b0651675496402a02b7", "username", "password");
 int funcResult = device.callFunction("functionName", "argsHere");
 String varValue = device.readVariable("varName");
 ```
 
-Example of subscribing to a device's event stream:
+Subscribe to a device's event stream:
 ```java
 SparkDevice device = new SparkDevice("50df6b0651675496402a02b7", "username", "password");
 SparkEventStream stream = device.eventStream((event) -> System.out.println(event.toString()));
