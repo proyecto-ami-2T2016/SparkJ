@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.exceptions.UnirestException;
 
-class SparkRestApi {
+public class SparkRestApi {
     static protected HttpResponse<String> sendRequest(com.mashape.unirest.request.BaseRequest req) {
         try {
             HttpResponse<String> res = req.asString();
