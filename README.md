@@ -9,7 +9,7 @@ SparkJ is a maven project and is available from the Maven Central repository. To
 <dependency>
   <groupId>com.github.grantwest.sparkj</groupId>
   <artifactId>sparkj</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
 </dependency>
 ```
 
